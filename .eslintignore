@@ -1,0 +1,13 @@
+
+*.sh
+node_modules
+*.md
+*.woff
+*.ttf
+.vscode
+.idea
+dist
+/public
+Dockerfile
+types/svg-component.d.ts
+types/svg-component-global.d.ts
