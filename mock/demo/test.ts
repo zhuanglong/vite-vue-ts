@@ -1,7 +1,9 @@
-import { Random } from 'mockjs';
+import mockjs from 'mockjs';
 import { MockMethod } from 'vite-plugin-mock';
 
 import { resultSuccess } from '../_util';
+
+const { Random } = mockjs;
 
 export default [
   {

@@ -1,0 +1,13 @@
+{
+  "editor.tabSize": 2,
+  "alias-skip.mappings": {
+    "@": "/src"
+  },
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+  ],
+  "stylelint.validate": ["css", "scss", "vue"],
+}
