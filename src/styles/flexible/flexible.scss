@@ -1,0 +1,78 @@
+// ****** vw + rem 适配移动端 ******
+
+// 移动端，响应式布局
+// var rate = 0.6,std; // 375/(1/.16) /100 = 0.6
+// var ret = [320, 360, 375, 400, 414, 440, 480, 520, 560, 600, 640, 680, 720, 750].map(i=>{
+//   var num = (i/0.6).toFixed(5).replace(/\.[0]+$/,'');
+//   if(i==375) std = num
+//   return ('@media (min-width:'+i+'px){html{font-size:'+ num +'% !important;}}')
+//  }
+// ).join('\r\n') + '\r\n@media (min-width:768px){html{font-size:'+ std +'% !important;}}';
+// copy(ret);
+// console.log(ret);
+
+// 设计稿宽度
+$designWidth: 375;
+// 设定 1rem = 100px（当然其他数也可以，1:100 为了方便换算）
+$blocks: 100;
+
+// 缩放所支持的设备最小宽度
+/* prettier-ignore */
+$minDeviceWidth: 320PX;
+// 缩放所支持的设备最大宽度
+/* prettier-ignore */
+$maxDeviceWidth: 400px;
+
+// 启用最小宽度限制
+$enableMinLimit: true;
+// 启用最大宽度限制
+$enableMaxLimit: true;
+
+// html 根元素的 font-size 定义
+@mixin rootFontSize() {
+  html {
+    // 计算规则：
+    // 100vw / 375px = 0.2666667vw，即 0.2666667vw = 1px = 0.2666667%
+    // 为便于换算，设定 1rem = 100px, 即 26.66667vw = 100px = 1rem = 26.66667%
+    // 也就是 375px = (375px / 100px)rem
+    font-size: calc(100vw / $designWidth * $blocks) !important;
+
+    // 最小宽度定义
+    @if ($enableMinLimit) {
+      @media screen and (max-width: $minDeviceWidth) {
+        & {
+          /* stylelint-disable-next-line number-max-precision */
+          font-size: 533.33333% !important;
+        }
+      }
+
+      body {
+        min-width: $minDeviceWidth;
+      }
+    }
+
+    // 最大宽度定义
+    @if ($enableMaxLimit) {
+      @media screen and (min-width: $maxDeviceWidth) {
+        & {
+          /* stylelint-disable-next-line number-max-precision */
+          font-size: 866.66667% !important;
+          // font-size: 666.66667% !important;
+        }
+      }
+
+      // 居中处理
+      body {
+        max-width: $maxDeviceWidth;
+        margin-right: auto;
+        margin-left: auto;
+      }
+    }
+  }
+}
+
+// px 转 rem
+// 因为设定 1rem = 100px，即 0.01rem = 1px
+@function px2rem($px) {
+  @return #{calc($px / $blocks)}rem;
+}

@@ -1,0 +1,31 @@
+@import './flexible/flexible.scss';
+
+// 移动端自适应，可覆盖变量
+// $designWidth: 750;
+@include rootFontSize();
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  outline: none;
+}
+
+html {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background-color: #fafbfc;
+  // prettier-ignore
+  font-size: 12PX;
+  line-height: 1.2;
+  // 避免移动端点击时出现蓝色背景
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  // 避免选中文字时出现蓝色背景
+  // -moz-user-select: none;
+  // -webkit-user-select: none;
+  // -ms-user-select: none;
+  // user-select: none;
+}

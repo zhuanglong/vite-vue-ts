@@ -3,7 +3,7 @@ module.exports = {
   // 继承规则集
   extends: [
     'stylelint-config-standard',
-    'stylelint-config-idiomatic-order',
+    // 'stylelint-config-idiomatic-order',
     'stylelint-prettier/recommended',
   ],
   overrides: [{

@@ -11,3 +11,4 @@ dist
 Dockerfile
 types/svg-component.d.ts
 types/svg-component-global.d.ts
+types/vant-components.d.ts

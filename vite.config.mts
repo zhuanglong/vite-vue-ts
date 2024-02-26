@@ -11,6 +11,8 @@ import { viteMockServe } from 'vite-plugin-mock';
 import postCssPxToRem from 'postcss-pxtorem';
 import autoprefixer from 'autoprefixer';
 import UnpluginSvgComponent from 'unplugin-svg-component/vite';
+import Components from 'unplugin-vue-components/vite';
+import { VantResolver } from 'unplugin-vue-components/resolvers';
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
@@ -25,6 +27,18 @@ export default defineConfig(({ command, mode }) => {
     plugins: [
       vue(),
       splitVendorChunkPlugin(),
+      Components({
+        resolvers: [VantResolver()],
+        dirs: [],
+        dts: 'types/vant-components.d.ts',
+      }),
+      UnpluginSvgComponent({
+        iconDir: resolve(__dirname, './src/assets/icons'),
+        preserveColor: resolve(__dirname, './src/assets/icons'),
+        dts: true,
+        dtsDir: resolve(__dirname, './types'),
+        componentStyle: 'width: 1em; height: 1em;',
+      }),
       viteMockServe({
         mockPath: 'mock/demo',
       }),
@@ -35,13 +49,6 @@ export default defineConfig(({ command, mode }) => {
             title: env.VITE_APP_NAME,
           },
         },
-      }),
-      UnpluginSvgComponent({
-        iconDir: resolve(__dirname, './src/assets/icons'),
-        preserveColor: resolve(__dirname, './src/assets/icons'),
-        dts: true,
-        dtsDir: resolve(__dirname, './types'),
-        componentStyle: 'width: 1em; height: 1em;',
       }),
       isBuildReport &&
         visualizer({
@@ -72,7 +79,10 @@ export default defineConfig(({ command, mode }) => {
       // https://cn.vitejs.dev/config/#css-preprocessoroptions
       preprocessorOptions: {
         scss: {
-          additionalData: "@import '@/design/flexible/flexible.scss';",
+          additionalData: `
+            @import "@/styles/mixin/index.scss";
+            @import '@/styles/flexible/flexible.scss';
+          `,
         },
         // less: {
         //   javascriptEnabled: true,
@@ -93,10 +103,10 @@ export default defineConfig(({ command, mode }) => {
               },
             },
           },
-          // postCssPxToRem({
-          //   rootValue: 100, // 根据 flexible.scss 中的 1rem = 100px
-          //   propList: ['*'],
-          // }),
+          postCssPxToRem({
+            rootValue: 100, // 根据 flexible.scss 中的 1rem = 100px
+            propList: ['*'],
+          }),
           autoprefixer(),
         ],
       },

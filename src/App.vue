@@ -12,6 +12,7 @@
     </a>
   </div>
   <HelloWorld msg="Vite + Vue" />
+  <van-button type="primary">主要按钮</van-button>
 </template>
 
 <style scoped>
