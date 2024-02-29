@@ -21,10 +21,11 @@ $blocks: 100;
 $minDeviceWidth: 320PX;
 // 缩放所支持的设备最大宽度
 /* prettier-ignore */
-$maxDeviceWidth: 400px;
+$maxDeviceWidth: 600PX;
+// $maxDeviceWidth: 400PX;
 
 // 启用最小宽度限制
-$enableMinLimit: true;
+$enableMinLimit: false;
 // 启用最大宽度限制
 $enableMaxLimit: true;
 
@@ -63,11 +64,17 @@ $enableMaxLimit: true;
 
       // 居中处理
       body {
+        margin: 0 auto;
         max-width: $maxDeviceWidth;
-        margin-right: auto;
-        margin-left: auto;
       }
     }
+  }
+}
+
+@mixin limit-width-root() {
+  @if ($enableMaxLimit) {
+    margin: 0 auto;
+    max-width: $maxDeviceWidth;
   }
 }
 

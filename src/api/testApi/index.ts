@@ -1,4 +1,4 @@
-import useSWR from 'swr';
+// import useSWR from 'swr';
 
 import { httpClient, ApiResult } from '@/utils/request';
 import { getAppInfo } from '@/utils/appEnv';
@@ -22,20 +22,20 @@ export async function getRandomColor() {
   }
 }
 
-export const useGetRandomColor = () => {
-  return useSWR(
-    `${apiPrefix}/test/random`,
-    async (url) => {
-      try {
-        const res = await httpClient.post<ApiResult<string>>(url);
-        if (res.code === 0) {
-          return res.data;
-        }
-        return '';
-      } catch (error) {
-        return '';
-      }
-    },
-    { suspense: true },
-  );
-};
+// export const useGetRandomColor = () => {
+//   return useSWR(
+//     `${apiPrefix}/test/random`,
+//     async (url) => {
+//       try {
+//         const res = await httpClient.post<ApiResult<string>>(url);
+//         if (res.code === 0) {
+//           return res.data;
+//         }
+//         return '';
+//       } catch (error) {
+//         return '';
+//       }
+//     },
+//     { suspense: true },
+//   );
+// };

@@ -1,12 +1,13 @@
 import { resolve } from 'path';
 
-// import legacy from '@vitejs/plugin-legacy'; // 向下兼容插件
+// import legacy from '@vitejs/plugin-legacy';
 import { defineConfig, loadEnv, splitVendorChunkPlugin } from 'vite';
 import vue from '@vitejs/plugin-vue';
+import vueJsx from '@vitejs/plugin-vue-jsx';
 import esbuild from 'rollup-plugin-esbuild';
-import { visualizer } from 'rollup-plugin-visualizer'; // 打包模块可视化分析
-import compressPlugin from 'vite-plugin-compression'; // 使用 gzip 压缩资源
-import { createHtmlPlugin } from 'vite-plugin-html'; // 插入数据到 index.html
+import { visualizer } from 'rollup-plugin-visualizer';
+import compressPlugin from 'vite-plugin-compression';
+import { createHtmlPlugin } from 'vite-plugin-html';
 import { viteMockServe } from 'vite-plugin-mock';
 import postCssPxToRem from 'postcss-pxtorem';
 import autoprefixer from 'autoprefixer';
@@ -26,6 +27,7 @@ export default defineConfig(({ command, mode }) => {
 
     plugins: [
       vue(),
+      vueJsx(),
       splitVendorChunkPlugin(),
       Components({
         resolvers: [VantResolver()],
@@ -40,7 +42,7 @@ export default defineConfig(({ command, mode }) => {
         componentStyle: 'width: 1em; height: 1em;',
       }),
       viteMockServe({
-        mockPath: 'mock/demo',
+        mockPath: 'mock/modules',
       }),
       createHtmlPlugin({
         minify: false,
@@ -106,6 +108,7 @@ export default defineConfig(({ command, mode }) => {
           postCssPxToRem({
             rootValue: 100, // 根据 flexible.scss 中的 1rem = 100px
             propList: ['*'],
+            // exclude: (file) => !file.includes('node_modules/vant/'), // 排除
           }),
           autoprefixer(),
         ],

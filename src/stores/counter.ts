@@ -7,8 +7,8 @@ interface CounterState {
   count: number;
 }
 
-export const useCounter = defineStore({
-  id: 'counter',
+export const useCounterStore = defineStore({
+  id: 'counterStore',
 
   state: (): CounterState => ({
     count: counterStorage.getItem(),
@@ -21,18 +21,18 @@ export const useCounter = defineStore({
   },
 
   actions: {
-    increment() {
+    increase() {
       this.count++;
       counterStorage.setItem(this.count);
     },
-    decrement() {
+    decrease() {
       this.count--;
       counterStorage.setItem(this.count);
     },
-    incrementAsync() {
+    decreaseAsync() {
       return new Promise<void>((resolve) => {
         setTimeout(() => {
-          this.increment();
+          this.decrease();
           resolve();
         }, 2000);
       });
@@ -41,6 +41,6 @@ export const useCounter = defineStore({
 });
 
 // 可在组件外使用
-export function useCounterWithOut() {
-  return useCounter(store);
+export function useCounterStoreWithOut() {
+  return useCounterStore(store);
 }

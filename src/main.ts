@@ -9,21 +9,41 @@ import './assets/iconfont/iconfont.css';
 
 // vant 函数组件样式
 import 'vant/es/toast/style';
+import 'vant/es/dialog/style';
 // vant 桌面端适配
 import '@vant/touch-emulator';
 
 // 移动端适应，手动转换 rem
 import './styles/flexible/flexible.js';
 
-import { createApp } from 'vue';
-import App from './App.vue';
-
-import { isProdMode } from '@/utils/appEnv.ts';
+// 注: 安卓钉钉 V6.3.40 WebView Chrome/69 不支持 Promise.allsettled，所以加垫片
+// import allSettled from 'promise.allsettled';
+// allSettled.shim();
 
 // MockData
-import { setupProdMockServer } from '../mock/_createProductionServer';
+import { isProdMode } from '@/utils/appEnv.ts';
+import { setupProdMockServer } from '../mock/createProductionServer';
 if (isProdMode()) {
   setupProdMockServer();
 }
 
-createApp(App).mount('#app');
+import { createApp } from 'vue';
+import App from './App.vue';
+
+import { setupStore } from './stores';
+import router, { setupRouter } from './router';
+
+async function bootstrap() {
+  const app = createApp(App);
+  // 挂载全局变量
+  app.config.globalProperties.$px2rem = window.$px2rem;
+  // 挂载状态管理
+  setupStore(app);
+  // 挂载路由
+  setupRouter(app);
+  // 路由准备就绪后挂载APP实例
+  await router.isReady();
+  app.mount('#app', true);
+}
+
+bootstrap();
