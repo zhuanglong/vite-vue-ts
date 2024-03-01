@@ -1,18 +1,13 @@
 <!-- eslint-disable vue/no-template-shadow -->
 <template>
   <div class="MainLayout-root">
-    <div class="nav-bar-wrapper" v-if="getShowHeader">
-      <div class="nav-bar">
-        <van-nav-bar safe-area-inset-top :title="getTitle" :fixed="false" />
-      </div>
-      <div class="nav-bar-placeholder"></div>
-    </div>
+    <NavBar v-if="getShowHeader" :left-arrow="false" />
     <RouterView v-slot="{ Component, route }">
       <KeepAlive :include="keepAliveComponents">
         <component :is="Component" :key="route.fullPath" />
       </KeepAlive>
     </RouterView>
-    <div class="tabbar-wrapper">
+    <div class="Tabbar-root">
       <div class="tabbar-placeholder"></div>
       <div class="tabbar">
         <van-tabbar safe-area-inset-bottom route :fixed="false">
@@ -34,6 +29,7 @@
   import { computed, onMounted } from 'vue';
   import { useRoute } from 'vue-router';
 
+  import NavBar from '@/components/NavBar';
   import { useRouteStore } from '@/stores/route';
 
   defineOptions({
@@ -60,42 +56,25 @@
 
 <style lang="scss" scoped>
   .MainLayout-root {
-    .nav-bar {
-      position: fixed;
-      top: 0;
-      right: 0;
-      left: 0;
-      z-index: 999;
-      @include limit-width-root();
+    .Tabbar-root {
+      .tabbar {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 999;
+        @include limit-width-root();
 
-      :deep() {
-        .van-nav-bar__content {
-          height: 46px;
+        :deep() {
+          .van-tabbar {
+            height: 50px;
+          }
         }
       }
-    }
 
-    .nav-bar-placeholder {
-      height: 46px;
-    }
-
-    .tabbar {
-      position: fixed;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      z-index: 999;
-      @include limit-width-root();
-
-      :deep() {
-        .van-tabbar {
-          height: 50px;
-        }
+      .tabbar-placeholder {
+        height: 50px;
       }
-    }
-
-    .tabbar-placeholder {
-      height: 50px;
     }
   }
 </style>

@@ -1,34 +1,37 @@
 <template>
   <div class="AssetsDemo-page">
-    <div class="fonts-wrapper">
-      <h3 class="title">Fonts</h3>
-      <div>Hello React! 你好 React！123</div>
-      <div>Hello React! 你好 React！123</div>
-      <div>Hello React! 你好 React！123</div>
-    </div>
-    <div class="icon-font-wrapper">
-      <h3 class="title">Icon Font</h3>
-      <i class="iconfont icon-zhongyingwen" />
-      <i class="iconfont icon-suoxiao" />
-      <i class="iconfont icon-fangda" />
-      <i class="iconfont icon-contentright" />
-      <i class="iconfont icon-zhuti" />
-    </div>
-    <div class="icons-wrapper">
-      <h3 class="title">Icons</h3>
-      <img :src="bangbangtangIcon" alt="icon" />
-      <img :src="getImg('baomihua')" alt="icon" />
-      <img :src="getImg('sanmingzhi')" alt="icon" />
-      <span class="bg-img" />
-      <div class="svg-row">
-        <SvgIcon name="hanbao" />
-        <SvgIcon name="pintu" />
+    <NavBar />
+    <div class="container">
+      <div class="fonts-wrapper">
+        <h3 class="title">Fonts</h3>
+        <div>Hello React! 你好 React！123</div>
+        <div>Hello React! 你好 React！123</div>
+        <div>Hello React! 你好 React！123</div>
       </div>
-    </div>
-    <div class="lotties-wrapper" @click="router.back()">
-      <h3 class="title">Lotties</h3>
-      <div id="lottie1" />
-      <div id="lottie2" />
+      <div class="icon-font-wrapper">
+        <h3 class="title">Icon Font</h3>
+        <i class="iconfont icon-zhongyingwen" />
+        <i class="iconfont icon-suoxiao" />
+        <i class="iconfont icon-fangda" />
+        <i class="iconfont icon-contentright" />
+        <i class="iconfont icon-zhuti" />
+      </div>
+      <div class="icons-wrapper">
+        <h3 class="title">Icons</h3>
+        <img :src="bangbangtangIcon" alt="icon" />
+        <img :src="getImg('baomihua')" alt="icon" />
+        <img :src="getImg('sanmingzhi')" alt="icon" />
+        <span class="bg-img" />
+        <div class="svg-row">
+          <SvgIcon name="hanbao" />
+          <SvgIcon name="pintu" />
+        </div>
+      </div>
+      <div class="lotties-wrapper" @click="router.back()">
+        <h3 class="title">Lotties</h3>
+        <div id="lottie1" />
+        <div id="lottie2" />
+      </div>
     </div>
   </div>
 </template>
@@ -39,6 +42,7 @@
   import lottie, { type AnimationItem } from 'lottie-web';
   import SvgIcon from '~virtual/svg-component';
 
+  import NavBar from '@/components/NavBar';
   import bangbangtangIcon from '@/assets/icons/bangbangtang.svg';
   import Polite_Chicky from '@/assets/lotties/Polite_Chicky.json';
   import Aniki_Hamster from '@/assets/lotties/Aniki_Hamster.json';
@@ -82,7 +86,9 @@
 
 <style lang="scss" scoped>
   .AssetsDemo-page {
-    padding: 20px;
+    .container {
+      padding: 20px;
+    }
 
     .title {
       padding: 10px 0;

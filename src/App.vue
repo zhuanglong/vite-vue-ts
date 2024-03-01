@@ -1,12 +1,10 @@
 <template>
   <RouterView v-slot="{ Component }">
-    <div>
-      <Transition mode="out-in" appear>
-        <KeepAlive :include="keepAliveComponents">
-          <component :is="Component" />
-        </KeepAlive>
-      </Transition>
-    </div>
+    <Transition mode="out-in" appear>
+      <KeepAlive :include="keepAliveComponents">
+        <component :is="Component" />
+      </KeepAlive>
+    </Transition>
   </RouterView>
 </template>
 

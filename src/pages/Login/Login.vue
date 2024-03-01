@@ -2,7 +2,7 @@
   <div className="Login-page">
     <h1>Sign in to X</h1>
     <p>
-      <van-button type="primary" @click="signIn">Fake sign in</van-button>
+      <van-button type="primary" @click="signIn">sign in</van-button>
     </p>
   </div>
 </template>
