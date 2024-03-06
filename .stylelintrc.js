@@ -6,13 +6,16 @@ module.exports = {
     // 'stylelint-config-idiomatic-order',
     'stylelint-prettier/recommended',
   ],
-  overrides: [{
-    files: ['**/*.scss'],
-    customSyntax: 'postcss-scss',
-  }, {
-    files: ['**/*.vue'],
-    customSyntax: 'postcss-html',
-  }],
+  overrides: [
+    {
+      files: ['**/*.scss'],
+      customSyntax: 'postcss-scss',
+    },
+    {
+      files: ['**/*.vue'],
+      customSyntax: 'postcss-html',
+    },
+  ],
   rules: {
     // https://github.com/ream88/stylelint-config-idiomatic-order
     'font-family-no-missing-generic-family-keyword': null,

@@ -1,9 +1,9 @@
 <template>
-  <div className="Login-page">
-    <h1>Sign in to X</h1>
-    <p>
-      <van-button type="primary" @click="signIn">sign in</van-button>
-    </p>
+  <div class="Login-page">
+    <h1 class="title">ViteVueTSMobile</h1>
+    <div class="btn-wrapper">
+      <van-button class="btn" type="primary" @click="signIn">登录</van-button>
+    </div>
   </div>
 </template>
 
@@ -13,10 +13,6 @@
 
   import { useUserInfoStore } from '@/stores/userInfo';
   import * as userApi from '@/api/userApi';
-
-  defineOptions({
-    name: 'Login',
-  });
 
   const router = useRouter();
   const route = useRoute();
@@ -46,6 +42,23 @@
 
 <style lang="scss" scoped>
   .Login-page {
+    padding: 20px;
     text-align: center;
+
+    .title {
+      margin-top: 50px;
+      color: inherit;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .btn-wrapper {
+      width: 100%;
+      margin-top: 20px;
+
+      .btn {
+        width: 60%;
+      }
+    }
   }
 </style>

@@ -1,33 +1,20 @@
 // ****** vw + rem 适配移动端 ******
-
-// 移动端，响应式布局
-// var rate = 0.6,std; // 375/(1/.16) /100 = 0.6
-// var ret = [320, 360, 375, 400, 414, 440, 480, 520, 560, 600, 640, 680, 720, 750].map(i=>{
-//   var num = (i/0.6).toFixed(5).replace(/\.[0]+$/,'');
-//   if(i==375) std = num
-//   return ('@media (min-width:'+i+'px){html{font-size:'+ num +'% !important;}}')
-//  }
-// ).join('\r\n') + '\r\n@media (min-width:768px){html{font-size:'+ std +'% !important;}}';
-// copy(ret);
-// console.log(ret);
+/* stylelint-disable number-max-precision */
 
 // 设计稿宽度
 $designWidth: 375;
 // 设定 1rem = 100px（当然其他数也可以，1:100 为了方便换算）
 $blocks: 100;
 
-// 缩放所支持的设备最小宽度
-/* prettier-ignore */
-$minDeviceWidth: 320PX;
-// 缩放所支持的设备最大宽度
-/* prettier-ignore */
-$maxDeviceWidth: 600PX;
-// $maxDeviceWidth: 400PX;
+// 打开媒体查询模式
+$enableMediaQuery: true;
 
-// 启用最小宽度限制
-$enableMinLimit: false;
-// 启用最大宽度限制
-$enableMaxLimit: true;
+// 适配到桌面端时，展示的视图宽度
+/* prettier-ignore */
+$desktopWidth: 600PX;
+// 适配到移动端横屏时，展示的视图宽度
+/* prettier-ignore */
+$landscapeWidth: 425PX;
 
 // html 根元素的 font-size 定义
 @mixin rootFontSize() {
@@ -38,43 +25,75 @@ $enableMaxLimit: true;
     // 也就是 375px = (375px / 100px)rem
     font-size: calc(100vw / $designWidth * $blocks) !important;
 
-    // 最小宽度定义
-    @if ($enableMinLimit) {
-      @media screen and (max-width: $minDeviceWidth) {
-        & {
-          /* stylelint-disable-next-line number-max-precision */
-          font-size: 533.33333% !important;
+    // 宽度定义
+    @if ($enableMediaQuery) {
+      @include desktopOrMobileLandscapeWithCenter {
+        #app {
+          margin-left: auto !important;
+          margin-right: auto !important;
         }
       }
 
-      body {
-        min-width: $minDeviceWidth;
-      }
-    }
-
-    // 最大宽度定义
-    @if ($enableMaxLimit) {
-      @media screen and (min-width: $maxDeviceWidth) {
+      @include desktopOrMobileLandscape {
         & {
-          /* stylelint-disable-next-line number-max-precision */
+          font-size: 666.66667% !important;
+        }
+
+        #app {
+          max-width: $landscapeWidth !important;
+        }
+      }
+
+      @include desktop {
+        & {
           font-size: 866.66667% !important;
-          // font-size: 666.66667% !important;
         }
-      }
 
-      // 居中处理
-      body {
-        margin: 0 auto;
-        max-width: $maxDeviceWidth;
+        #app {
+          max-width: $desktopWidth !important;
+        }
       }
     }
   }
 }
 
-@mixin limit-width-root() {
-  @if ($enableMaxLimit) {
-    margin: 0 auto;
-    max-width: $maxDeviceWidth;
+// 桌面端或移动端横屏
+@mixin desktopOrMobileLandscapeWithCenter {
+  @media (min-width: $desktopWidth),
+    (orientation: landscape) and (min-width: $landscapeWidth) and (max-width: $desktopWidth) {
+    @content;
+  }
+}
+
+// 桌面端或移动端横屏
+@mixin desktopOrMobileLandscape {
+  @media (min-width: $desktopWidth) and (max-height: ($desktopWidth + 40)),
+    (orientation: landscape) and (min-width: $landscapeWidth) and (max-width: $desktopWidth) {
+    @content;
+  }
+}
+
+// 桌面端
+@mixin desktop {
+  @media (min-width: $desktopWidth) and (min-height: ($desktopWidth + 40)) {
+    @content;
+  }
+}
+
+@mixin limit-width() {
+  @if ($enableMediaQuery) {
+    @include desktopOrMobileLandscapeWithCenter {
+      margin-left: auto !important;
+      margin-right: auto !important;
+    }
+
+    @include desktopOrMobileLandscape {
+      max-width: $landscapeWidth !important;
+    }
+
+    @include desktop {
+      max-width: $desktopWidth !important;
+    }
   }
 }
 

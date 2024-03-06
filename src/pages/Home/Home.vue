@@ -1,7 +1,7 @@
 <template>
   <div class="Home-page">
-    <h1 class="title" :style="{ color: data }" @click="refresh">Home</h1>
-    <van-button :style="{ margin: '20px' }" @click="router.push('/assets-demo')">
+    <h1 class="title" :style="{ color: data }" @click="refresh">{{ route.meta.title }}</h1>
+    <van-button :style="{ marginTop: $px2rem(40) }" @click="router.push('/assets-demo')">
       Assets demo page
     </van-button>
   </div>
@@ -9,17 +9,16 @@
 
 <script lang="ts" setup>
   import { ref, onMounted } from 'vue';
-  import { useRouter } from 'vue-router';
+  import { useRouter, useRoute } from 'vue-router';
 
   import { useCacheScrollPosition } from '@/hooks/useCacheScrollPosition';
   import * as testApi from '@/api/testApi';
 
-  defineOptions({
-    name: 'Home',
-  });
+  defineOptions({ name: 'Home' });
 
   useCacheScrollPosition();
   const router = useRouter();
+  const route = useRoute();
   const data = ref('');
 
   function refresh() {
@@ -43,12 +42,11 @@
 <style lang="scss" scoped>
   .Home-page {
     height: 100vh;
-    background-color: antiquewhite;
+    padding: 20px;
 
     .title {
-      padding: 20px;
-      margin: 0;
-      color: cadetblue;
+      color: inherit;
+      font-size: 24px;
     }
   }
 </style>

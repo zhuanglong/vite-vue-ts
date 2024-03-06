@@ -1,26 +1,16 @@
+// 适配移动端
 @import './flexible/flexible.scss';
-
-// 移动端自适应，可覆盖变量
-// $designWidth: 750;
 @include rootFontSize();
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-  list-style-type: none;
-  outline: none;
-}
 
 html {
   font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
-  background-color: #fafbfc;
+  margin: 0;
   // prettier-ignore
   font-size: 12PX;
-  line-height: 1.2;
+  line-height: 1.5;
   // 避免移动端点击时出现蓝色背景
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   // 避免选中文字时出现蓝色背景
@@ -28,4 +18,56 @@ body {
   // -webkit-user-select: none;
   // -ms-user-select: none;
   // user-select: none;
+}
+
+a:focus,
+a:active,
+button,
+div,
+svg,
+span {
+  outline: none;
+}
+
+a {
+  color: var(--van-cascader-active-color) !important;
+  background: transparent;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+a:active,
+a:hover {
+  outline-width: 0;
+}
+
+a:active,
+a:hover {
+  outline: 0;
+  text-decoration: none;
+}
+
+[data-theme='dark'] {
+  &,
+  * {
+    color-scheme: dark !important;
+  }
+
+  body {
+    background-color: #121212;
+    color: var(--van-text-color) !important;
+  }
+}
+
+[data-theme='light'] {
+  &,
+  * {
+    color-scheme: light !important;
+  }
+
+  body {
+    background-color: #fcfbfe;
+    color: var(--van-gray-8) !important;
+  }
 }

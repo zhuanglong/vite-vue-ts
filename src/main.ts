@@ -1,17 +1,13 @@
-// 全局样式
-import './styles/normalize.css';
-import './styles/common.scss';
-
-// 字体
-import './assets/fonts/font.css';
-// 字体图标
-import './assets/iconfont/iconfont.css';
-
+import 'virtual:uno.css';
 // vant 函数组件样式
 import 'vant/es/toast/style';
 import 'vant/es/dialog/style';
 // vant 桌面端适配
 import '@vant/touch-emulator';
+
+// https://unocss.dev/guide/style-reset#tailwind-compat
+// 此重置基于 Tailwind 重置，减去按钮的背景颜色覆盖，以避免与 UI 框架发生冲突。请参阅链接的问题。
+import '@unocss/reset/tailwind-compat.css';
 
 // 移动端适应，手动转换 rem
 import './styles/flexible/flexible.js';

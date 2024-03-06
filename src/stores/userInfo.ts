@@ -5,19 +5,19 @@ import userInfoStorage from '@/storages/userInfoStorage';
 
 import { ResUserInfo } from '@/api/userApi/types';
 
-interface State {
+interface UserInfoState {
   userInfo: ResUserInfo | null;
 }
 
 export const useUserInfoStore = defineStore({
   id: 'userInfoStore',
 
-  state: (): State => ({
+  state: (): UserInfoState => ({
     userInfo: userInfoStorage.getItem(),
   }),
 
   actions: {
-    setUserInfo(userInfo: State['userInfo']) {
+    setUserInfo(userInfo: UserInfoState['userInfo']) {
       this.userInfo = userInfo;
       userInfoStorage.setItem(userInfo);
     },

@@ -27,7 +27,7 @@
           <SvgIcon name="pintu" />
         </div>
       </div>
-      <div class="lotties-wrapper" @click="router.back()">
+      <div class="lotties-wrapper">
         <h3 class="title">Lotties</h3>
         <div id="lottie1" />
         <div id="lottie2" />
@@ -38,7 +38,6 @@
 
 <script lang="ts" setup>
   import { onMounted, onUnmounted } from 'vue';
-  import { useRouter } from 'vue-router';
   import lottie, { type AnimationItem } from 'lottie-web';
   import SvgIcon from '~virtual/svg-component';
 
@@ -46,12 +45,6 @@
   import bangbangtangIcon from '@/assets/icons/bangbangtang.svg';
   import Polite_Chicky from '@/assets/lotties/Polite_Chicky.json';
   import Aniki_Hamster from '@/assets/lotties/Aniki_Hamster.json';
-
-  defineOptions({
-    name: 'AssetsDemo',
-  });
-
-  const router = useRouter();
 
   let lottie1: AnimationItem;
   let lottie2: AnimationItem;
@@ -92,6 +85,7 @@
 
     .title {
       padding: 10px 0;
+      font-size: 18px;
     }
 
     .icon-font-wrapper {
@@ -102,6 +96,7 @@
 
     .icons-wrapper {
       img {
+        display: inline-block;
         width: 16px;
         height: 16px;
         margin-right: 5px;
@@ -111,14 +106,17 @@
         font-size: 16px;
 
         svg {
+          display: inline-block;
           margin-right: 5px;
         }
       }
 
       .bg-img {
         display: inline-block;
+        margin-right: 5px;
         width: 16px;
         height: 16px;
+        vertical-align: middle;
         background-image: url('@/assets/icons/bingqilin.svg');
         background-repeat: no-repeat;
         background-size: contain;

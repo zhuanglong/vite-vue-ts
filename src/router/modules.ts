@@ -48,6 +48,9 @@ export const routes: Array<RouteRecordRaw> = [
     component: MainLayout,
     redirect: '/home',
     children: mainMenuRoutes,
+    meta: {
+      title: 'Root',
+    },
   },
   {
     path: '/assets-demo',
@@ -55,6 +58,14 @@ export const routes: Array<RouteRecordRaw> = [
     component: () => import('@/pages/AessetsDemo/AssetsDemo.vue'),
     meta: {
       title: 'Assets Demo',
+    },
+  },
+  {
+    path: '/theme-setting',
+    name: 'ThemeSetting',
+    component: () => import('@/pages/Mine/ThemeSetting/ThemeSetting.vue'),
+    meta: {
+      title: '主题设置',
     },
   },
   {

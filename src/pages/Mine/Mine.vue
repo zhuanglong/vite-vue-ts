@@ -1,13 +1,15 @@
 <template>
   <div class="Mine-page">
-    <h1 class="title">Mine</h1>
+    <h1 class="title">{{ route.meta.title }}</h1>
     <h3 class="counter">Counter: {{ counterStore.count }}</h3>
-    <van-button class="btn" @click="signOut">Sign out</van-button>
+    <van-button class="btn" @click="router.push('/theme-setting')">主题设置</van-button>
+    <br />
+    <van-button class="btn" type="danger" @click="signOut">退出登录</van-button>
   </div>
 </template>
 
 <script lang="ts" setup>
-  import { useRouter } from 'vue-router';
+  import { useRouter, useRoute } from 'vue-router';
   import { showLoadingToast, showFailToast, closeToast } from 'vant';
 
   import { useCacheScrollPosition } from '@/hooks/useCacheScrollPosition';
@@ -15,12 +17,11 @@
   import { useCounterStore } from '@/stores/counter';
   import * as userApi from '@/api/userApi';
 
-  defineOptions({
-    name: 'Mine',
-  });
+  defineOptions({ name: 'Mine' });
 
   useCacheScrollPosition();
   const router = useRouter();
+  const route = useRoute();
   const userInfoStore = useUserInfoStore();
   const counterStore = useCounterStore();
 
@@ -49,21 +50,20 @@
 <style lang="scss" scoped>
   .Mine-page {
     height: 100vh;
-    background-color: brown;
+    padding: 20px;
 
     .title {
-      padding: 20px;
-      margin: 0;
-      color: #fff;
+      color: inherit;
+      font-size: 24px;
     }
 
     .counter {
-      padding-left: 20px;
-      color: #fff;
+      margin-top: 40px;
+      color: inherit;
     }
 
     .btn {
-      margin: 20px;
+      margin-top: 20px;
     }
   }
 </style>

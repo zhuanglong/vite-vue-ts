@@ -42,7 +42,8 @@
 
       const vanNavBarSlots = {
         title: slots.title,
-        left: slots.left,
+        left: () =>
+          slots.left ? slots.left() : leftArrow && <i class="i-ic:sharp-arrow-back-ios" text-xl />,
         right: slots.right,
       };
 
@@ -53,7 +54,6 @@
               {...props}
               onClickLeft={props.clickLeft ? props.clickLeft : router.back}
               onClickRight={props.clickRight}
-              leftText={leftArrow ? '返回' : undefined}
               title={props.title || getTitle.value}
               safe-area-inset-top
               fixed={false}
@@ -78,7 +78,7 @@
       top: 0;
       right: 0;
       left: 0;
-      @include limit-width-root();
+      @include limit-width();
 
       :deep() {
         .van-nav-bar__content {

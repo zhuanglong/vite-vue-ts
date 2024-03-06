@@ -32,9 +32,7 @@
   import NavBar from '@/components/NavBar';
   import { useRouteStore } from '@/stores/route';
 
-  defineOptions({
-    name: 'MainLayout',
-  });
+  defineOptions({ name: 'MainLayout' });
 
   const route = useRoute();
   const routeStore = useRouteStore();
@@ -44,8 +42,6 @@
 
   // 需要缓存的路由组件
   const keepAliveComponents = computed(() => routeStore.keepAliveComponents);
-
-  const getTitle = computed(() => route.meta.title);
 
   const getShowHeader = computed(() => !route.meta.hideNavbar);
 
@@ -63,7 +59,7 @@
         bottom: 0;
         left: 0;
         z-index: 999;
-        @include limit-width-root();
+        @include limit-width();
 
         :deep() {
           .van-tabbar {

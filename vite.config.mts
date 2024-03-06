@@ -14,6 +14,7 @@ import autoprefixer from 'autoprefixer';
 import UnpluginSvgComponent from 'unplugin-svg-component/vite';
 import Components from 'unplugin-vue-components/vite';
 import { VantResolver } from 'unplugin-vue-components/resolvers';
+import UnoCSS from 'unocss/vite';
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
@@ -28,6 +29,7 @@ export default defineConfig(({ command, mode }) => {
     plugins: [
       vue(),
       vueJsx(),
+      UnoCSS(),
       splitVendorChunkPlugin(),
       Components({
         resolvers: [VantResolver()],
@@ -86,11 +88,6 @@ export default defineConfig(({ command, mode }) => {
             @import '@/styles/flexible/flexible.scss';
           `,
         },
-        // less: {
-        //   javascriptEnabled: true,
-        //   modifyVars: {
-        //   },
-        // },
       },
       postcss: {
         plugins: [
@@ -145,6 +142,9 @@ export default defineConfig(({ command, mode }) => {
       // 防止 vite 将 rgba() 颜色转化为 #RGBA 十六进制符号的形式
       // https://cn.vitejs.dev/config/#build-csstarget
       cssTarget: 'chrome61',
+
+      // 启用/禁用 gzip 压缩大小报告
+      reportCompressedSize: true,
 
       // https://rollupjs.org/guide/en/#outputoptions-object
       rollupOptions: {

@@ -1,10 +1,9 @@
 <template>
-  <div className="Message-page">
-    <h1 className="title">Message</h1>
-    <div className="counter">
+  <div class="Message-page">
+    <div class="counter">
       Counter：
       <van-button size="small" @click="counterStore.decrease()">-</van-button>
-      <span className="number">{{ counterStore.count }}</span>
+      <span class="number">{{ counterStore.count }}</span>
       <van-button size="small" @click="counterStore.increase()">+</van-button>
     </div>
   </div>
@@ -13,9 +12,7 @@
 <script lang="ts" setup>
   import { useCounterStore } from '@/stores/counter';
 
-  defineOptions({
-    name: 'Message',
-  });
+  defineOptions({ name: 'Message' });
 
   import { useCacheScrollPosition } from '@/hooks/useCacheScrollPosition';
 
@@ -26,17 +23,12 @@
 <style lang="scss" scoped>
   .Message-page {
     height: 100vh;
-    background-color: chocolate;
-
-    .title {
-      padding: 20px;
-      margin: 0;
-      color: #fff;
-    }
+    padding: 20px;
 
     .counter {
-      padding: 20px;
-      color: #fff;
+      display: flex;
+      align-items: center;
+      color: inherit;
 
       .number {
         padding: 5px;
