@@ -80,19 +80,27 @@ $landscapeWidth: 425PX;
   }
 }
 
-@mixin limit-width() {
+@mixin limit-width($fixed: true) {
   @if ($enableMediaQuery) {
-    @include desktopOrMobileLandscapeWithCenter {
-      margin-left: auto !important;
-      margin-right: auto !important;
+    @if ($fixed == false) {
+      @include desktopOrMobileLandscapeWithCenter {
+        margin-left: auto !important;
+        margin-right: auto !important;
+      }
     }
 
     @include desktopOrMobileLandscape {
       max-width: $landscapeWidth !important;
+      @if ($fixed == true) {
+        left: calc(50% - $landscapeWidth / 2) !important;
+      }
     }
 
     @include desktop {
       max-width: $desktopWidth !important;
+      @if ($fixed == true) {
+        left: calc(50% - $desktopWidth / 2) !important;
+      }
     }
   }
 }

@@ -7,21 +7,23 @@
         <component :is="Component" :key="route.fullPath" />
       </KeepAlive>
     </RouterView>
-    <div class="Tabbar-root">
-      <div class="tabbar-placeholder"></div>
-      <div class="tabbar">
-        <van-tabbar safe-area-inset-bottom route :fixed="false">
-          <van-tabbar-item
-            v-for="menu in getMenus"
-            :key="menu.name"
-            :to="menu.path"
-            :icon="(menu.meta?.icon as string)"
-          >
-            {{ menu.meta?.title }}
-          </van-tabbar-item>
-        </van-tabbar>
-      </div>
-    </div>
+    <van-tabbar
+      class="tabbar"
+      safe-area-inset-bottom
+      route
+      :fixed="true"
+      placeholder
+      :z-index="999"
+    >
+      <van-tabbar-item
+        v-for="menu in getMenus"
+        :key="menu.name"
+        :to="menu.path"
+        :icon="(menu.meta?.icon as string)"
+      >
+        {{ menu.meta?.title }}
+      </van-tabbar-item>
+    </van-tabbar>
   </div>
 </template>
 
@@ -52,24 +54,12 @@
 
 <style lang="scss" scoped>
   .MainLayout-root {
-    .Tabbar-root {
-      .tabbar {
-        position: fixed;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        z-index: 999;
-        @include limit-width();
-
-        :deep() {
-          .van-tabbar {
-            height: 50px;
-          }
+    .tabbar {
+      :deep() {
+        .van-tabbar {
+          height: 50px;
+          @include limit-width();
         }
-      }
-
-      .tabbar-placeholder {
-        height: 50px;
       }
     }
   }

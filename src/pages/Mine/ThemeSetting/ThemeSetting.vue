@@ -10,26 +10,26 @@
       </van-cell>
 
       <van-divider>系统主题色</van-divider>
-      <div flex="~" justify="center">
-        <div grid="~ cols-8 gap-2">
+      <div un-flex="~" un-justify="center">
+        <div un-grid="~ cols-8 gap-2">
           <span
             v-for="(item, index) in designSettingStore.appThemeList"
             :key="index"
-            h="9"
-            w="9"
-            items-center
-            border="2 rounded-md"
-            flex="~"
-            justify="center"
-            cursor="pointer"
+            un-h="9"
+            un-w="9"
+            un-items-center="~"
+            un-border="2 rounded-md"
+            un-flex="~"
+            un-justify="center"
+            un-cursor="pointer"
             :style="{ 'background-color': item }"
             @click="toggleTheme(item)"
           >
             <i
               v-show="item === designSettingStore.appTheme"
               class="i-ic:sharp-check"
-              text-2xl
-              text-white
+              un-text-2xl
+              un-text-white
             />
           </span>
         </div>

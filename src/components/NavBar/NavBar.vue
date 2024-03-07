@@ -14,6 +14,10 @@
       ...vanNavBarProps.leftArrow,
       default: true,
     },
+    zIndex: {
+      ...vanNavBarProps.zIndex,
+      default: 999,
+    },
     clickLeft: {
       type: Function as PropType<() => void>,
     },
@@ -31,64 +35,47 @@
 
     props: navBarProps,
 
-    emits: ['clickLeft', 'clickRight'],
+    emits: NavBar.emits,
 
     setup(props, { slots }) {
       const route = useRoute();
       const router = useRouter();
 
-      const { leftArrow } = props;
+      const { clickLeft, clickRight, ...rest } = props;
       const getTitle = computed(() => route.meta.title);
 
       const vanNavBarSlots = {
         title: slots.title,
         left: () =>
-          slots.left ? slots.left() : leftArrow && <i class="i-ic:sharp-arrow-back-ios" text-xl />,
+          slots.left
+            ? slots.left()
+            : props.leftArrow && <i class="i-ic:sharp-arrow-back-ios text-xl" />,
         right: slots.right,
       };
 
       return () => (
-        <div class="NavBar-root">
-          <div class="nav-bar" style={{ zIndex: props.zIndex || 999 }}>
-            <NavBar
-              {...props}
-              onClickLeft={props.clickLeft ? props.clickLeft : router.back}
-              onClickRight={props.clickRight}
-              title={props.title || getTitle.value}
-              safe-area-inset-top
-              fixed={false}
-              v-slots={vanNavBarSlots}
-              placeholder={false}
-              zIndex={undefined}
-            />
-          </div>
-          {props.placeholder && <div class="nav-bar-placeholder" />}
-        </div>
+        <NavBar
+          class="nav-bar"
+          {...rest}
+          onClickLeft={clickLeft ? clickLeft : router.back}
+          onClickRight={clickRight}
+          title={rest.title || getTitle.value}
+          safe-area-inset-top
+          fixed
+          v-slots={vanNavBarSlots}
+        />
       );
     },
   });
 </script>
 
 <style lang="scss" scoped>
-  $height: 46px;
-
-  .NavBar-root {
-    .nav-bar {
-      position: fixed;
-      top: 0;
-      right: 0;
-      left: 0;
-      @include limit-width();
-
-      :deep() {
-        .van-nav-bar__content {
-          height: $height;
-        }
+  .nav-bar {
+    :deep() {
+      .van-nav-bar {
+        height: 46px;
+        @include limit-width();
       }
-    }
-
-    .nav-bar-placeholder {
-      height: $height;
     }
   }
 </style>

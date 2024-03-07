@@ -1,8 +1,8 @@
 import {
   defineConfig,
-  presetAttributify,
-  presetTypography,
   presetUno,
+  presetTypography,
+  presetAttributify,
   // presetWebFonts,
 } from 'unocss';
 import presetIcons from '@unocss/preset-icons';
@@ -20,7 +20,6 @@ export default defineConfig({
     // 所以需要转成 px，然后由 postcss 把 px 转成 rem，完成适配
     // https://unocss.dev/presets/rem-to-px
     presetRemToPx({
-      // default
       baseFontSize: 16,
     }),
 
@@ -32,12 +31,15 @@ export default defineConfig({
       },
     }),
 
-    // 属性模式(在 class 属性过多的情况下优先使用属性模式，否则将会变得难以维护)
-    // https://unocss.dev/presets/attributify#attributify-mode
-    presetAttributify(),
-
     // https://unocss.dev/presets/typography#usage
     presetTypography(),
+
+    // 属性模式(在 class 属性过多的情况下优先使用属性模式，否则将会变得难以维护)
+    // https://unocss.dev/presets/attributify#attributify-mode
+    presetAttributify({
+      prefix: 'un-',
+      prefixedOnly: true,
+    }),
 
     // 网络字体预设：https://unocss.dev/presets/web-fonts
     // presetWebFonts({
@@ -55,7 +57,7 @@ export default defineConfig({
     // 在样式类里你也可以写原子化 css 具体看链接: https://unocss.dev/transformers/directives#usage
     // Unknown at rule @apply: https://github.com/unocss/unocss/issues/2401#issuecomment-1678410089
     transformerDirectives(),
-    // 支持 JSX/TSX 中的属性模式 https://unocss.dev/transformers/attributify-jsx
+    // 属性模式(支持 JSX/TSX) https://unocss.dev/transformers/attributify-jsx
     transformerAttributifyJsx(),
   ],
 
