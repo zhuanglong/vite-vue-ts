@@ -34,47 +34,47 @@
   transform: scaleY(0.5);
 }
 
-[class*='van-hairline'] {
-  &::after {
-    @include hairline();
-  }
-}
+// [class*='van-hairline'] {
+//   &::after {
+//     @include hairline();
+//   }
+// }
 
-.van-hairline {
-  &,
-  &--top,
-  &--left,
-  &--right,
-  &--bottom,
-  &--surround,
-  &--top-bottom {
-    position: relative;
-  }
+// .van-hairline {
+//   &,
+//   &--top,
+//   &--left,
+//   &--right,
+//   &--bottom,
+//   &--surround,
+//   &--top-bottom {
+//     position: relative;
+//   }
 
-  &--top::after {
-    border-top-width: 1px;
-  }
+//   &--top::after {
+//     border-top-width: 1px;
+//   }
 
-  &--left::after {
-    border-left-width: 1px;
-  }
+//   &--left::after {
+//     border-left-width: 1px;
+//   }
 
-  &--right::after {
-    border-right-width: 1px;
-  }
+//   &--right::after {
+//     border-right-width: 1px;
+//   }
 
-  &--bottom::after {
-    border-bottom-width: 1px;
-  }
+//   &--bottom::after {
+//     border-bottom-width: 1px;
+//   }
 
-  &,
-  &-unset {
-    &--top-bottom::after {
-      border-width: 1px 0;
-    }
-  }
+//   &,
+//   &-unset {
+//     &--top-bottom::after {
+//       border-width: 1px 0;
+//     }
+//   }
 
-  &--surround::after {
-    border-width: 1px;
-  }
-}
+//   &--surround::after {
+//     border-width: 1px;
+//   }
+// }

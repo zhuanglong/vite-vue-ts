@@ -12,7 +12,8 @@ import '@unocss/reset/tailwind-compat.css';
 // 移动端适应，手动转换 rem
 import './styles/flexible/flexible.js';
 
-// 注: 安卓钉钉 V6.3.40 WebView Chrome/69 不支持 Promise.allsettled，所以加垫片
+// 注: 钉钉 webview(Chrome/69.x.x) 不支持 Promise.allsettled
+// 截止 20240308(已支持)
 // import allSettled from 'promise.allsettled';
 // allSettled.shim();
 

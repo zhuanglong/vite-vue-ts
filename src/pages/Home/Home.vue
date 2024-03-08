@@ -1,6 +1,6 @@
 <template>
   <div class="Home-page">
-    <h1 class="title" :style="{ color: data }" @click="refresh">{{ route.meta.title }}</h1>
+    <h1 class="title" :style="{ color: data }" @click="refresh">这是一段文字！！！</h1>
     <van-button :style="{ marginTop: $px2rem(40) }" @click="router.push('/assets-demo')">
       Assets demo page
     </van-button>
@@ -9,7 +9,7 @@
 
 <script lang="ts" setup>
   import { ref, onMounted } from 'vue';
-  import { useRouter, useRoute } from 'vue-router';
+  import { useRouter } from 'vue-router';
 
   import { useCacheScrollPosition } from '@/hooks/useCacheScrollPosition';
   import * as testApi from '@/api/testApi';
@@ -18,7 +18,6 @@
 
   useCacheScrollPosition();
   const router = useRouter();
-  const route = useRoute();
   const data = ref('');
 
   function refresh() {

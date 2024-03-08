@@ -1,12 +1,12 @@
 import { resolve } from 'path';
 
 // import legacy from '@vitejs/plugin-legacy';
-import { defineConfig, loadEnv, splitVendorChunkPlugin } from 'vite';
+import { defineConfig, loadEnv } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
-import esbuild from 'rollup-plugin-esbuild';
+// import esbuild from 'rollup-plugin-esbuild';
 import { visualizer } from 'rollup-plugin-visualizer';
-import compressPlugin from 'vite-plugin-compression';
+// import compressPlugin from 'vite-plugin-compression';
 import { createHtmlPlugin } from 'vite-plugin-html';
 import { viteMockServe } from 'vite-plugin-mock';
 import postCssPxToRem from 'postcss-pxtorem';
@@ -30,7 +30,6 @@ export default defineConfig(({ command, mode }) => {
       vue(),
       vueJsx(),
       UnoCSS(),
-      splitVendorChunkPlugin(),
       Components({
         resolvers: [VantResolver()],
         dirs: [],
@@ -70,11 +69,12 @@ export default defineConfig(({ command, mode }) => {
       //     deleteOriginFile: true,
       //   }),
       // 解决 dev 模式无法在 Chrome 70 下使用 optional chaining 语法，https://github.com/vitejs/vite/issues/5222
-      // 目前钉钉 webview 的内核是 Chrome/69.x.x，如需在钉钉上调试，请启用 esbuild
-      {
-        ...esbuild({ target: 'chrome70' }),
-        enforce: 'post',
-      },
+      // 安卓：Chrome/69.x.x，如需在钉钉上调试，请启用 esbuild
+      // 截止 20240308(已支持)：安卓：DingTalk/7.5.5.12 Chrome/100.0.xx，Windows：DingTalk/7.5.10 Chrome/91.0.xx
+      // {
+      //   ...esbuild({ target: 'chrome70' }),
+      //   enforce: 'post',
+      // },
       // legacy(),
     ],
 
@@ -135,7 +135,8 @@ export default defineConfig(({ command, mode }) => {
 
     build: {
       // 解决钉钉 webview(Chrome/69.x.x) “SyntaxError: Unexpected token ?” 错误
-      target: 'chrome70',
+      // 截止 20240308(已支持)
+      // target: 'chrome70',
 
       // assetsInlineLimit: 10240, // 对 .svg 不生效
 
@@ -146,13 +147,32 @@ export default defineConfig(({ command, mode }) => {
       // 启用/禁用 gzip 压缩大小报告
       reportCompressedSize: true,
 
+      // chunk 大小警告的限制（以 kbs 为单位）
+      // chunkSizeWarningLimit: 2000,
+
       // https://rollupjs.org/guide/en/#outputoptions-object
       rollupOptions: {
+        // 静态资源分类打包
         output: {
-          // js 和 css 文件夹分离
-          chunkFileNames: 'js/[name]-[hash].js',
-          entryFileNames: 'js/[name]-[hash].js',
-          assetFileNames: 'assets/[name]-[hash].[ext]',
+          chunkFileNames: 'js/[name]-[hash].js', // 引入文件名的名称
+          entryFileNames: 'js/[name]-[hash].js', // 包的入口文件名称
+          // 资源文件像 字体，图片等
+          assetFileNames: (info) => {
+            if (info.name?.endsWith('.css')) {
+              return 'css/[name]-[hash].[ext]';
+            }
+            return 'assets/[name]-[hash].[ext]';
+          },
+          // 将 node_modules 三方依赖包最小化拆分
+          // manualChunks(id) {
+          //   if (id.includes('node_modules')) {
+          //     const paths = id.toString().split('node_modules/');
+          //     if (paths[2]) {
+          //       return paths[2].split('/')[0].toString();
+          //     }
+          //     return paths[1].split('/')[0].toString();
+          //   }
+          // },
         },
       },
     },

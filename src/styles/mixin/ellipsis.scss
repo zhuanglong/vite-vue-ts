@@ -12,14 +12,14 @@
   text-overflow: ellipsis;
 }
 
-.ellipsis {
-  @include ellipsis();
-}
+// .ellipsis {
+//   @include ellipsis();
+// }
 
-.multi-ellipsis--l2 {
-  @include multi-ellipsis(2);
-}
+// .multi-ellipsis--l2 {
+//   @include multi-ellipsis(2);
+// }
 
-.multi-ellipsis--l3 {
-  @include multi-ellipsis(3);
-}
+// .multi-ellipsis--l3 {
+//   @include multi-ellipsis(3);
+// }

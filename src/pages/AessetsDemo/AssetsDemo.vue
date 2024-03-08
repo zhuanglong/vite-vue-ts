@@ -38,7 +38,8 @@
 
 <script lang="ts" setup>
   import { onMounted, onUnmounted } from 'vue';
-  import lottie, { type AnimationItem } from 'lottie-web';
+  // https://github.com/airbnb/lottie-web/issues/2927#issuecomment-1593391384
+  import lottie, { type AnimationItem } from 'lottie-web/build/player/lottie_light';
   import SvgIcon from '~virtual/svg-component';
 
   import NavBar from '@/components/NavBar';
