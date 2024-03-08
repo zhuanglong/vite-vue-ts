@@ -71,3 +71,13 @@ a:hover {
     color: var(--van-gray-8) !important;
   }
 }
+
+// light
+.van-theme-light {
+  --test-theme-color: blue;
+}
+
+// dark
+.van-theme-dark {
+  --test-theme-color: red;
+}

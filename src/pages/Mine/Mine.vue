@@ -54,6 +54,7 @@
 
     .title {
       color: inherit;
+      // color: var(--test-theme-color);
       font-size: 24px;
     }
 
