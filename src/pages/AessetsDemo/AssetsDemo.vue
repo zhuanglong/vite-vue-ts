@@ -24,7 +24,7 @@
         <span class="bg-img" />
         <div class="svg-row">
           <SvgIcon name="hanbao" />
-          <SvgIcon name="pintu" />
+          <SvgIcon name="pintu" color="currentColor" />
         </div>
       </div>
       <div class="lotties-wrapper">
@@ -40,7 +40,7 @@
   import { onMounted, onUnmounted } from 'vue';
   // https://github.com/airbnb/lottie-web/issues/2927#issuecomment-1593391384
   import lottie, { type AnimationItem } from 'lottie-web/build/player/lottie_light';
-  import SvgIcon from '~virtual/svg-component';
+  import SvgIcon from '@/components/SvgIcon';
 
   import NavBar from '@/components/NavBar';
   import bangbangtangIcon from '@/assets/icons/bangbangtang.svg';

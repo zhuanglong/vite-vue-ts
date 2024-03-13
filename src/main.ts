@@ -5,6 +5,9 @@ import 'vant/es/dialog/style';
 // vant 桌面端适配
 import '@vant/touch-emulator';
 
+// svg 雪碧图
+import 'virtual:svg-icons-register';
+
 // https://unocss.dev/guide/style-reset#tailwind-compat
 // 此重置基于 Tailwind 重置，减去按钮的背景颜色覆盖，以避免与 UI 框架发生冲突。请参阅链接的问题。
 import '@unocss/reset/tailwind-compat.css';

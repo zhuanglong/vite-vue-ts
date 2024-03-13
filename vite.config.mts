@@ -11,7 +11,7 @@ import { createHtmlPlugin } from 'vite-plugin-html';
 import { viteMockServe } from 'vite-plugin-mock';
 import postCssPxToRem from 'postcss-pxtorem';
 import autoprefixer from 'autoprefixer';
-import UnpluginSvgComponent from 'unplugin-svg-component/vite';
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 import Components from 'unplugin-vue-components/vite';
 import { VantResolver } from 'unplugin-vue-components/resolvers';
 import UnoCSS from 'unocss/vite';
@@ -35,18 +35,15 @@ export default defineConfig(({ command, mode }) => {
         dirs: [],
         dts: 'types/vant-components.d.ts',
       }),
-      UnpluginSvgComponent({
-        iconDir: resolve(__dirname, './src/assets/icons'),
-        preserveColor: resolve(__dirname, './src/assets/icons'),
-        dts: true,
-        dtsDir: resolve(__dirname, './types'),
-        componentStyle: 'width: 1em; height: 1em;',
+      createSvgIconsPlugin({
+        iconDirs: [resolve(__dirname, './src/assets/icons')],
+        symbolId: 'icon-[dir]-[name]',
       }),
       viteMockServe({
         mockPath: 'mock/modules',
       }),
       createHtmlPlugin({
-        minify: false,
+        minify: true,
         inject: {
           data: {
             title: env.VITE_APP_NAME,
