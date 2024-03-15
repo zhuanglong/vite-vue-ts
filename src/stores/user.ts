@@ -5,19 +5,19 @@ import userInfoStorage from '@/storages/userInfoStorage';
 
 import { ResUserInfo } from '@/api/userApi/types';
 
-interface UserInfoState {
+interface UserState {
   userInfo: ResUserInfo | null;
 }
 
-export const useUserInfoStore = defineStore({
-  id: 'userInfoStore',
+export const useUserStore = defineStore({
+  id: 'userStore',
 
-  state: (): UserInfoState => ({
+  state: (): UserState => ({
     userInfo: userInfoStorage.getItem(),
   }),
 
   actions: {
-    setUserInfo(userInfo: UserInfoState['userInfo']) {
+    setUserInfo(userInfo: UserState['userInfo']) {
       this.userInfo = userInfo;
       userInfoStorage.setItem(userInfo);
     },
@@ -25,6 +25,6 @@ export const useUserInfoStore = defineStore({
 });
 
 // 可在组件外使用
-export function useUserInfoStoreWithOut() {
-  return useUserInfoStore(store);
+export function useUserStoreWithOut() {
+  return useUserStore(store);
 }

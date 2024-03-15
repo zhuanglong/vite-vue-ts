@@ -13,7 +13,7 @@
   import { showLoadingToast, showFailToast, closeToast } from 'vant';
 
   import { useCacheScrollPosition } from '@/hooks/useCacheScrollPosition';
-  import { useUserInfoStore } from '@/stores/userInfo';
+  import { useUserStore } from '@/stores/user';
   import { useCounterStore } from '@/stores/counter';
   import * as userApi from '@/api/userApi';
 
@@ -22,7 +22,7 @@
   useCacheScrollPosition();
   const router = useRouter();
   const route = useRoute();
-  const userInfoStore = useUserInfoStore();
+  const userInfoStore = useUserStore();
   const counterStore = useCounterStore();
 
   async function signOut() {

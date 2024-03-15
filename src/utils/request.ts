@@ -9,7 +9,7 @@ import type {
 } from 'axios';
 import { showLoadingToast, closeToast } from 'vant';
 
-import { useUserInfoStoreWithOut } from '@/stores/userInfo';
+import { useUserStoreWithOut } from '@/stores/user';
 
 export interface ApiResult<T = any> {
   code: number;
@@ -47,7 +47,7 @@ class Request {
       }
 
       if (config.url !== '/login') {
-        const token = useUserInfoStoreWithOut().userInfo?.token;
+        const token = useUserStoreWithOut().userInfo?.token;
         if (token) config.headers.Authorization = `Bearer ${token}`;
       }
 
@@ -80,7 +80,7 @@ class Request {
         }
 
         if (error.response?.status === 401) {
-          useUserInfoStoreWithOut().setUserInfo(null);
+          useUserStoreWithOut().setUserInfo(null);
           window.location.href = `/login?redirect=${window.location.pathname}`;
           return Promise.reject(error);
         }

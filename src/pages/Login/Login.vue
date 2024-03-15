@@ -11,12 +11,12 @@
   import { useRouter, useRoute } from 'vue-router';
   import { showLoadingToast, showFailToast, closeToast } from 'vant';
 
-  import { useUserInfoStore } from '@/stores/userInfo';
+  import { useUserStore } from '@/stores/user';
   import * as userApi from '@/api/userApi';
 
   const router = useRouter();
   const route = useRoute();
-  const { setUserInfo } = useUserInfoStore();
+  const { setUserInfo } = useUserStore();
 
   const path = route.redirectedFrom?.fullPath || '/';
 

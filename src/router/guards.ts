@@ -1,14 +1,14 @@
 import type { Router } from 'vue-router';
 import { isNavigationFailure } from 'vue-router';
 import { useRouteStoreWidthOut } from '@/stores/route';
-import { useUserInfoStoreWithOut } from '@/stores/userInfo';
+import { useUserStoreWithOut } from '@/stores/user';
 
 export function createRouterGuards(router: Router) {
   router.beforeEach(async (to, from, next) => {
     // to: 即将要进入的目标
     // from: 当前导航正要离开的路由
 
-    const userInfo = useUserInfoStoreWithOut();
+    const userInfo = useUserStoreWithOut();
 
     // 忽略检查
     if (to.meta.ignoreAuth) {
