@@ -59,7 +59,8 @@
   function updateDarkSign(mode: DesignSettingState['darkMode']) {
     const htmlRoot = document.getElementById('htmlRoot');
     if (htmlRoot) {
-      htmlRoot.setAttribute('data-theme', mode);
+      htmlRoot.classList.add(mode === 'dark' ? 'dark' : 'light');
+      htmlRoot.classList.remove(mode === 'dark' ? 'light' : 'dark');
     }
   }
 

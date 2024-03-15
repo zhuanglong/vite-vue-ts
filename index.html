@@ -34,7 +34,7 @@
 
         var htmlRoot = document.getElementById('htmlRoot');
         if (htmlRoot) {
-          htmlRoot.setAttribute('data-theme', res.darkMode || 'light');
+          htmlRoot.classList.add(res.darkMode || 'light');
         }
 
         document.documentElement.style.setProperty(

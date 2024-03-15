@@ -48,7 +48,7 @@ a:hover {
   text-decoration: none;
 }
 
-[data-theme='dark'] {
+html.dark {
   &,
   * {
     color-scheme: dark !important;
@@ -60,7 +60,7 @@ a:hover {
   }
 }
 
-[data-theme='light'] {
+html.light {
   &,
   * {
     color-scheme: light !important;
