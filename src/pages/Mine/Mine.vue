@@ -15,6 +15,7 @@
   import { useCacheScrollPosition } from '@/hooks/useCacheScrollPosition';
   import { useUserStore } from '@/stores/user';
   import { useCounterStore } from '@/stores/counter';
+  import { useRouteStore } from '@/stores/route';
   import * as userApi from '@/api/userApi';
 
   defineOptions({ name: 'Mine' });
@@ -24,6 +25,7 @@
   const route = useRoute();
   const userInfoStore = useUserStore();
   const counterStore = useCounterStore();
+  const routeStore = useRouteStore();
 
   async function signOut() {
     showLoadingToast({
@@ -35,6 +37,7 @@
       if (res.code === 0) {
         closeToast();
         userInfoStore.setUserInfo(null);
+        routeStore.setKeepAliveComponents([]);
         router.push('/login');
       } else {
         showFailToast({

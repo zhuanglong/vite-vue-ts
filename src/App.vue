@@ -1,23 +1,17 @@
 <template>
   <VanConfigProvider :theme="designSettingStore.darkMode" :theme-vars="themeVars">
-    <RouterView v-slot="{ Component }">
-      <Transition mode="out-in" appear>
-        <KeepAlive :include="keepAliveComponents">
-          <component :is="Component" />
-        </KeepAlive>
-      </Transition>
-    </RouterView>
+    <KeepAliveLayout />
   </VanConfigProvider>
 </template>
 
 <script lang="ts" setup>
   import { computed } from 'vue';
-  import { useRouteStore } from '@/stores/route';
+
+  import KeepAliveLayout from '@/layouts/KeepAliveLayout.vue';
+
   import { useDesignSettingStore } from '@/stores/designSetting';
 
-  const routeStore = useRouteStore();
   const designSettingStore = useDesignSettingStore();
-  const keepAliveComponents = computed(() => routeStore.keepAliveComponents);
 
   const themeVars = computed(() => {
     const appTheme = designSettingStore.appTheme;

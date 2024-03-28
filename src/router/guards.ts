@@ -36,23 +36,24 @@ export function createRouterGuards(router: Router) {
     const routeStore = useRouteStoreWidthOut();
     // 在这里设置需要缓存的组件名称
     const keepAliveComponents = routeStore.keepAliveComponents;
-    // 获取当前组件名
-    const currentComName: any = to.matched.find((item) => item.name === to.name)?.name;
-
-    // 如果 currentComName 且 keepAliveComponents 不包含 currentComName 且即将要进入的路由 meta 属性里 keepAlive 为 true，则缓存该组件
-    if (currentComName && !keepAliveComponents.includes(currentComName) && to.meta?.keepAlive) {
-      // 需要缓存的组件
-      keepAliveComponents.push(currentComName);
-    } else if (!to.meta?.keepAlive) {
-      // 不需要缓存的组件
-      // 这里的作用一开始组件设置为缓存，之后又设置不缓存但是它还是存在 keepAliveComponents 数组中
-      // keepAliveComponents 使用 findIndex 与当前路由对比，如果存在则返回具体下标位置，不存在返回 -1
-      const index = routeStore.keepAliveComponents.findIndex((name) => name === currentComName);
-      if (index !== -1) {
-        // 通过返回具体下标位置删除 keepAliveComponents 数组中缓存的元素
-        keepAliveComponents.splice(index, 1);
+    to.matched.forEach((item) => {
+      // 获取当前组件名
+      const currentComName: any = item.name;
+      // 如果 currentComName 且 keepAliveComponents 不包含 currentComName 且即将要进入的路由 meta 属性里 keepAlive 为 true，则缓存该组件
+      if (currentComName && !keepAliveComponents.includes(currentComName) && item.meta?.keepAlive) {
+        // 需要缓存的组件
+        keepAliveComponents.push(currentComName);
+      } else if (!item.meta?.keepAlive) {
+        // 不需要缓存的组件
+        // 这里的作用一开始组件设置为缓存，之后又设置不缓存但是它还是存在 keepAliveComponents 数组中
+        // keepAliveComponents 使用 findIndex 与当前路由对比，如果存在则返回具体下标位置，不存在返回 -1
+        const index = routeStore.keepAliveComponents.findIndex((name) => name === currentComName);
+        if (index !== -1) {
+          // 通过返回具体下标位置删除 keepAliveComponents 数组中缓存的元素
+          keepAliveComponents.splice(index, 1);
+        }
       }
-    }
+    });
     routeStore.setKeepAliveComponents(keepAliveComponents);
   });
 

@@ -45,11 +45,12 @@ export const mainMenuRoutes: RouteRecordRaw[] = [
 export const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
+    name: 'MainLayout',
     component: MainLayout,
     redirect: '/home',
     children: mainMenuRoutes,
     meta: {
-      title: 'Root',
+      keepAlive: true,
     },
   },
   {
