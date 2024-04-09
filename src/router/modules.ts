@@ -16,6 +16,16 @@ export const mainMenuRoutes: RouteRecordRaw[] = [
       keepAlive: true,
       cacheScrollPosition: true,
     },
+    children: [
+      {
+        path: '/home/half-screen',
+        component: () => import('@/pages/HalfScreen/HalfScreen.vue'),
+        meta: {
+          title: '半屏路由',
+          isHalfScreen: true,
+        },
+      },
+    ],
   },
   {
     path: '/message',

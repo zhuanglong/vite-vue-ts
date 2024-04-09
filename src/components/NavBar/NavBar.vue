@@ -40,9 +40,17 @@
     setup(props, { slots }) {
       const route = useRoute();
       const router = useRouter();
+      let prevTitle: string | undefined;
 
       const { clickLeft, clickRight, ...rest } = props;
-      const getTitle = computed(() => route.meta.title);
+      const getTitle = computed(() => {
+        const { title, isHalfScreen } = route.meta;
+        if (isHalfScreen) {
+          return prevTitle;
+        }
+        prevTitle = title;
+        return title;
+      });
 
       const vanNavBarSlots = {
         title: slots.title,

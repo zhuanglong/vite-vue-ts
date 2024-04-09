@@ -2,9 +2,10 @@
   <div class="Mine-page">
     <h1 class="title">{{ route.meta.title }}</h1>
     <h3 class="counter">Counter: {{ counterStore.count }}</h3>
-    <van-button class="btn" @click="router.push('/theme-setting')">主题设置</van-button>
-    <br />
-    <van-button class="btn" type="danger" @click="signOut">退出登录</van-button>
+    <div :style="{ marginTop: $px2rem(40) }">
+      <van-cell title="主题设置" is-link to="/theme-setting" />
+      <van-cell title="退出登录" is-link @click="signOut" />
+    </div>
   </div>
 </template>
 
@@ -64,10 +65,6 @@
     .counter {
       margin-top: 40px;
       color: inherit;
-    }
-
-    .btn {
-      margin-top: 20px;
     }
   }
 </style>
