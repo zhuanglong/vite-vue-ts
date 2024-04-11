@@ -1,7 +1,7 @@
 <template>
   <div class="ThemeSetting-page">
     <NavBar />
-    <div class="container">
+    <div class="main-content">
       <van-divider>主题模式</van-divider>
       <van-cell center title="暗黑模式">
         <template #right-icon>

@@ -1,30 +1,15 @@
 <script lang="tsx">
-  import { type PropType, type ExtractPropTypes, defineComponent, computed } from 'vue';
+  import { type ExtractPropTypes, defineComponent, computed, unref } from 'vue';
   import { useRouter, useRoute } from 'vue-router';
   import { NavBar, navBarProps as vanNavBarProps } from 'vant';
   import 'vant/es/nav-bar/style';
 
   export const navBarProps = {
-    ...vanNavBarProps,
-    placeholder: {
-      ...vanNavBarProps.placeholder,
-      default: true,
-    },
     leftArrow: {
       ...vanNavBarProps.leftArrow,
       default: true,
     },
-    zIndex: {
-      ...vanNavBarProps.zIndex,
-      default: 999,
-    },
-    clickLeft: {
-      type: Function as PropType<() => void>,
-    },
-    clickRight: {
-      type: Function as PropType<() => void>,
-    },
-  };
+  } as unknown as typeof vanNavBarProps;
 
   export type NavBarProps = ExtractPropTypes<typeof navBarProps>;
 
@@ -33,26 +18,17 @@
       NavBar,
     },
 
+    inheritAttrs: false,
+
     props: navBarProps,
 
-    emits: NavBar.emits,
-
-    setup(props, { slots }) {
+    setup(props, { slots, attrs }) {
       const route = useRoute();
       const router = useRouter();
-      let prevTitle: string | undefined;
 
-      const { clickLeft, clickRight, ...rest } = props;
-      const getTitle = computed(() => {
-        const { title, isHalfScreen } = route.meta;
-        if (isHalfScreen) {
-          return prevTitle;
-        }
-        prevTitle = title;
-        return title;
-      });
+      const getTitle = computed(() => route.meta.title);
 
-      const vanNavBarSlots = {
+      const navBarSlots = {
         title: slots.title,
         left: () =>
           slots.left
@@ -64,13 +40,15 @@
       return () => (
         <NavBar
           class="nav-bar"
-          {...rest}
-          onClickLeft={clickLeft ? clickLeft : router.back}
-          onClickRight={clickRight}
-          title={rest.title || getTitle.value}
-          safe-area-inset-top
+          title={unref(getTitle)}
           fixed
-          v-slots={vanNavBarSlots}
+          leftArrow
+          placeholder
+          safe-area-inset-top
+          zIndex={999}
+          onClickLeft={(attrs['onClickLeft'] as undefined) || router.back}
+          v-slots={navBarSlots}
+          {...attrs}
         />
       );
     },

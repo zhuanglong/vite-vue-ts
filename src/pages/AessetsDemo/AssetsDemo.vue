@@ -1,7 +1,7 @@
 <template>
   <div class="AssetsDemo-page">
     <NavBar />
-    <div class="container">
+    <div class="main-content">
       <div class="fonts-wrapper">
         <h3 class="title">Fonts</h3>
         <div>Hello React! 你好 React！123</div>
@@ -80,7 +80,7 @@
 
 <style lang="scss" scoped>
   .AssetsDemo-page {
-    .container {
+    .main-content {
       padding: 20px;
     }
 

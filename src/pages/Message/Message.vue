@@ -1,20 +1,26 @@
 <template>
   <div class="Message-page">
-    <div class="counter">
-      Counter：
-      <van-button size="small" @click="counterStore.decrease()">-</van-button>
-      <span class="number">{{ counterStore.count }}</span>
-      <van-button size="small" @click="counterStore.increase()">+</van-button>
+    <NavBar :left-arrow="false" />
+    <div class="main-content">
+      <div class="counter">
+        Counter：
+        <van-button size="small" @click="counterStore.decrease()">-</van-button>
+        <span class="number">{{ counterStore.count }}</span>
+        <van-button size="small" @click="counterStore.increase()">+</van-button>
+      </div>
     </div>
+    <Tabbar />
   </div>
 </template>
 
 <script lang="ts" setup>
+  import NavBar from '@/components/NavBar';
+  import Tabbar from '@/components/Tabbar';
+
   import { useCounterStore } from '@/stores/counter';
+  import { useCacheScrollPosition } from '@/hooks/useCacheScrollPosition';
 
   defineOptions({ name: 'Message' });
-
-  import { useCacheScrollPosition } from '@/hooks/useCacheScrollPosition';
 
   useCacheScrollPosition();
   const counterStore = useCounterStore();
@@ -22,16 +28,18 @@
 
 <style lang="scss" scoped>
   .Message-page {
-    height: 100vh;
-    padding: 20px;
+    .main-content {
+      height: 100vh;
+      padding: 20px;
 
-    .counter {
-      display: flex;
-      align-items: center;
-      color: inherit;
+      .counter {
+        display: flex;
+        align-items: center;
+        color: inherit;
 
-      .number {
-        padding: 5px;
+        .number {
+          padding: 5px;
+        }
       }
     }
   }

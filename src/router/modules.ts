@@ -2,9 +2,6 @@
 // 例如 About/index.vue 打包后是 index.xxxx.js，理想效果应该是 About.xxxx.js，所以只能改文件名 index.js => About.js
 import type { RouteRecordRaw } from 'vue-router';
 
-// import EmptyLayout from '@/layouts/EmptyLayout.vue';
-import MainLayout from '@/layouts/MainLayout.vue';
-
 export const mainMenuRoutes: RouteRecordRaw[] = [
   {
     path: '/home',
@@ -22,7 +19,6 @@ export const mainMenuRoutes: RouteRecordRaw[] = [
         component: () => import('@/pages/HalfScreen/HalfScreen.vue'),
         meta: {
           title: '半屏路由',
-          isHalfScreen: true,
         },
       },
     ],
@@ -46,39 +42,12 @@ export const mainMenuRoutes: RouteRecordRaw[] = [
       title: '我的',
       icon: 'manager',
       keepAlive: true,
-      hideNavbar: true,
       cacheScrollPosition: true,
     },
   },
 ];
 
-export const routes: Array<RouteRecordRaw> = [
-  {
-    path: '/',
-    name: 'MainLayout',
-    component: MainLayout,
-    redirect: '/home',
-    children: mainMenuRoutes,
-    meta: {
-      keepAlive: true,
-    },
-  },
-  {
-    path: '/assets-demo',
-    name: 'AssetsDemo',
-    component: () => import('@/pages/AessetsDemo/AssetsDemo.vue'),
-    meta: {
-      title: 'Assets Demo',
-    },
-  },
-  {
-    path: '/theme-setting',
-    name: 'ThemeSetting',
-    component: () => import('@/pages/Mine/ThemeSetting/ThemeSetting.vue'),
-    meta: {
-      title: '主题设置',
-    },
-  },
+const otherRoutes: RouteRecordRaw[] = [
   {
     path: '/login',
     name: 'Login',
@@ -94,6 +63,31 @@ export const routes: Array<RouteRecordRaw> = [
     meta: {
       title: 'Not Found',
       ignoreAuth: true,
+    },
+  },
+];
+
+export const routes: Array<RouteRecordRaw> = [
+  {
+    path: '/',
+    redirect: '/home',
+  },
+  ...otherRoutes,
+  ...mainMenuRoutes,
+  {
+    path: '/assets-demo',
+    name: 'AssetsDemo',
+    component: () => import('@/pages/AessetsDemo/AssetsDemo.vue'),
+    meta: {
+      title: 'Assets Demo',
+    },
+  },
+  {
+    path: '/theme-setting',
+    name: 'ThemeSetting',
+    component: () => import('@/pages/Mine/ThemeSetting/ThemeSetting.vue'),
+    meta: {
+      title: '主题设置',
     },
   },
 ];

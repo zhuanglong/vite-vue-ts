@@ -1,18 +1,24 @@
 <template>
   <div class="Mine-page">
-    <h1 class="title">{{ route.meta.title }}</h1>
-    <h3 class="counter">Counter: {{ counterStore.count }}</h3>
-    <div :style="{ marginTop: $px2rem(40) }">
-      <van-cell title="主题设置" is-link to="/theme-setting" />
-      <van-cell title="退出登录" is-link @click="signOut" />
+    <div class="main-content">
+      <h1 class="title">{{ routeTitle }}</h1>
+      <h3 class="counter">Counter: {{ counterStore.count }}</h3>
+      <div :style="{ marginTop: $px2rem(40) }">
+        <van-cell title="主题设置" is-link to="/theme-setting" />
+        <van-cell title="退出登录" is-link @click="signOut" />
+      </div>
     </div>
+    <Tabbar />
   </div>
 </template>
 
 <script lang="ts" setup>
-  import { useRouter, useRoute } from 'vue-router';
+  import { useRouter } from 'vue-router';
   import { showLoadingToast, showFailToast, closeToast } from 'vant';
 
+  import Tabbar from '@/components/Tabbar';
+
+  import { useRouteTitle } from '@/hooks/useRouteTitle';
   import { useCacheScrollPosition } from '@/hooks/useCacheScrollPosition';
   import { useUserStore } from '@/stores/user';
   import { useCounterStore } from '@/stores/counter';
@@ -23,7 +29,7 @@
 
   useCacheScrollPosition();
   const router = useRouter();
-  const route = useRoute();
+  const routeTitle = useRouteTitle();
   const userInfoStore = useUserStore();
   const counterStore = useCounterStore();
   const routeStore = useRouteStore();
@@ -53,18 +59,20 @@
 
 <style lang="scss" scoped>
   .Mine-page {
-    height: 100vh;
-    padding: 20px;
+    .main-content {
+      height: 100vh;
+      padding: 20px;
 
-    .title {
-      color: inherit;
-      // color: var(--test-theme-color);
-      font-size: 24px;
-    }
+      .title {
+        color: inherit;
+        // color: var(--test-theme-color);
+        font-size: 24px;
+      }
 
-    .counter {
-      margin-top: 40px;
-      color: inherit;
+      .counter {
+        margin-top: 40px;
+        color: inherit;
+      }
     }
   }
 </style>

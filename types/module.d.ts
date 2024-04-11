@@ -10,8 +10,6 @@ declare module 'vue-router' {
     // https://gist.github.com/sxzz/3995fc7251567c7c95de35f45539b9c2
     keepAlive?: boolean;
     ignoreAuth?: boolean;
-    hideNavbar?: boolean;
-    isHalfScreen?: boolean;
     icon?: string; // 菜单图标
     cacheScrollPosition?: boolean; // 缓存滚动条位置
   }
