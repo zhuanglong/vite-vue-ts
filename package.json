@@ -1,7 +1,16 @@
 {
   "name": "vite-vue-ts",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "homepage": "https://github.com/zhuanglong/vite-vue-ts",
+  "bugs": {
+    "url": "https://github.com/zhuanglong/vite-vue-ts/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhuanglong/vite-vue-ts.git"
+  },
+  "license": "MIT",
   "type": "module",
   "scripts": {
     "dev": "vite --mode development",
