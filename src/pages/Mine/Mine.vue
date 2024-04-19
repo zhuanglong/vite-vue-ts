@@ -36,7 +36,7 @@
 
   async function signOut() {
     showLoadingToast({
-      message: 'signOut…',
+      message: 'Sign out…',
       forbidClick: true,
     });
     try {
@@ -48,7 +48,7 @@
         router.push('/login');
       } else {
         showFailToast({
-          message: 'signOut error',
+          message: 'Sign out error',
         });
       }
     } catch (error) {

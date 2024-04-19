@@ -10,7 +10,12 @@
 //   color: var(--van-primary-color) !important;
 // }
 
-.van-popup,
 .van-overlay {
   @include limit-width();
+}
+
+.van-popup {
+  &:not(.van-toast) {
+    @include limit-width();
+  }
 }

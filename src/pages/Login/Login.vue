@@ -22,7 +22,7 @@
 
   async function signIn() {
     showLoadingToast({
-      message: 'signin…',
+      message: 'Sign in...',
       forbidClick: true,
     });
     try {
@@ -32,7 +32,7 @@
         setUserInfo(res.data);
         router.replace(path);
       } else {
-        showFailToast({ message: 'signIn error' });
+        showFailToast({ message: 'Sign in error' });
       }
     } catch (error) {
       closeToast();
