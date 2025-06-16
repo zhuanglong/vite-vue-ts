@@ -19,18 +19,33 @@ git clone https://github.com/zhuanglong/vite-vue-ts.git
 cd vite-vue-ts
 
 安装依赖
-# pnpm install
+# yarn install
 
 # 运行
-pnpm dev
+yarn dev
 ```
 
 ## VS Code 配套插件
 
 建议安装推荐插件来提高开发效率及代码格式化
 
+## 提交校验（可选）
+
+首次 clone 代码 yarn install 后需要执行以下命令来更新 git hooks
+
+```
+# Update ./git/hooks
+yarn postinstall
+```
+
+修改 "simple-git-hooks": {} 配置需要执行 yarn updatehooks 更新
+
 ## 预览
 
 https://vite-vue-ts-jeff.netlify.app/
 
 https://vite-vue-ts-jeff.vercel.app/
+
+## Todo List
+
+- [] [postcss-mobile-forever](https://github.com/wswmsword/postcss-mobile-forever) 根号的适配移动端
