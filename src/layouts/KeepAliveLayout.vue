@@ -7,14 +7,12 @@
 </template>
 
 <script lang="ts" setup>
-  import { computed } from 'vue';
+import { computed } from 'vue'
 
-  import { useRouteStore } from '@/stores/route';
+import { useRouteStore } from '@/stores/route'
 
-  const routeStore = useRouteStore();
-  const keepAliveComponents = computed(() => routeStore.keepAliveComponents);
+const routeStore = useRouteStore()
+const keepAliveComponents = computed(() => routeStore.keepAliveComponents)
 </script>
 
-<style lang="scss">
-  //
-</style>
+<!-- <style lang="scss"></style> -->

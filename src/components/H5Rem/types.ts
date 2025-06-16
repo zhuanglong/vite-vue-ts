@@ -1,3 +1,3 @@
 export interface H5RemProps {
-  size: 'sm' | 'md' | 'lg';
+  size: 'sm' | 'md' | 'lg'
 }

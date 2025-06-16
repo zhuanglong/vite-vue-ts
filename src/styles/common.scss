@@ -1,8 +1,8 @@
-// 适配移动端
-@import './flexible/flexible.scss';
-@include rootFontSize();
+@import "./flexible/flexible";
+@import "./vant";
 
-@import './vant.scss';
+// 适配移动端
+@include rootFontSize;
 
 html {
   font-family: Arial, Helvetica, sans-serif;
@@ -10,11 +10,10 @@ html {
 
 body {
   margin: 0;
-  // prettier-ignore
   font-size: 12PX;
   line-height: 1.5;
   // 避免移动端点击时出现蓝色背景
-  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-tap-highlight-color: rgb(255 255 255 / 0%);
   // 避免选中文字时出现蓝色背景
   // -moz-user-select: none;
   // -webkit-user-select: none;
@@ -33,21 +32,17 @@ span {
 
 a {
   color: var(--van-cascader-active-color) !important;
-  background: transparent;
   text-decoration: none;
   cursor: pointer;
+  background: transparent;
   transition: color 0.2s ease;
 }
 
 a:active,
 a:hover {
-  outline-width: 0;
-}
-
-a:active,
-a:hover {
-  outline: 0;
   text-decoration: none;
+  outline: 0;
+  outline-width: 0;
 }
 
 html.dark {
@@ -57,8 +52,8 @@ html.dark {
   }
 
   body {
-    background-color: #121212;
     color: var(--van-text-color) !important;
+    background-color: #121212;
   }
 }
 
@@ -69,8 +64,8 @@ html.light {
   }
 
   body {
-    background-color: #fcfbfe;
     color: var(--van-gray-8) !important;
+    background-color: #fcfbfe;
   }
 }
 

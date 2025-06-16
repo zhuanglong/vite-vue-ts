@@ -11,11 +11,11 @@
 // }
 
 .van-overlay {
-  @include limit-width();
+  @include limit-width;
 }
 
 .van-popup {
   &:not(.van-toast) {
-    @include limit-width();
+    @include limit-width;
   }
 }

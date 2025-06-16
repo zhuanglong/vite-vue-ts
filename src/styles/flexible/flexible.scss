@@ -10,10 +10,10 @@ $blocks: 100;
 $enableMediaQuery: true;
 
 // 适配到桌面端时，展示的视图宽度
-/* prettier-ignore */
+
 $desktopWidth: 600PX;
 // 适配到移动端横屏时，展示的视图宽度
-/* prettier-ignore */
+
 $landscapeWidth: 425PX;
 
 // html 根元素的 font-size 定义
@@ -26,11 +26,11 @@ $landscapeWidth: 425PX;
     font-size: calc(100vw / $designWidth * $blocks) !important;
 
     // 宽度定义
-    @if ($enableMediaQuery) {
+    @if $enableMediaQuery {
       @include desktopOrMobileLandscapeWithCenter {
         #app {
-          margin-left: auto !important;
           margin-right: auto !important;
+          margin-left: auto !important;
         }
       }
 
@@ -81,24 +81,26 @@ $landscapeWidth: 425PX;
 }
 
 @mixin limit-width($fixed: true) {
-  @if ($enableMediaQuery) {
-    @if ($fixed == false) {
+  @if $enableMediaQuery {
+    @if $fixed == false {
       @include desktopOrMobileLandscapeWithCenter {
-        margin-left: auto !important;
         margin-right: auto !important;
+        margin-left: auto !important;
       }
     }
 
     @include desktopOrMobileLandscape {
       max-width: $landscapeWidth !important;
-      @if ($fixed == true) {
+
+      @if $fixed == true {
         left: calc(50% - $landscapeWidth / 2) !important;
       }
     }
 
     @include desktop {
       max-width: $desktopWidth !important;
-      @if ($fixed == true) {
+
+      @if $fixed == true {
         left: calc(50% - $desktopWidth / 2) !important;
       }
     }

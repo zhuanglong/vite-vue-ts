@@ -1,15 +1,15 @@
+import presetIcons from '@unocss/preset-icons'
+import presetRemToPx from '@unocss/preset-rem-to-px'
+import transformerAttributifyJsx from '@unocss/transformer-attributify-jsx'
+import transformerDirectives from '@unocss/transformer-directives'
+import transformerVariantGroup from '@unocss/transformer-variant-group'
 import {
   defineConfig,
-  presetUno,
-  presetTypography,
   presetAttributify,
+  presetTypography,
+  presetUno,
   // presetWebFonts,
-} from 'unocss';
-import presetIcons from '@unocss/preset-icons';
-import presetRemToPx from '@unocss/preset-rem-to-px';
-import transformerVariantGroup from '@unocss/transformer-variant-group';
-import transformerDirectives from '@unocss/transformer-directives';
-import transformerAttributifyJsx from '@unocss/transformer-attributify-jsx';
+} from 'unocss'
 
 export default defineConfig({
   presets: [
@@ -26,7 +26,7 @@ export default defineConfig({
     // 图标预设: https://unocss.dev/presets/icons
     presetIcons({
       extraProperties: {
-        display: 'inline-block',
+        'display': 'inline-block',
         'vertical-align': 'middle',
       },
     }),
@@ -78,4 +78,4 @@ export default defineConfig({
   // 因此无法生成对应的 CSS。为了解决这个问题，你可以使用 UnoCSS 的 safelist 选项来指定一些始终需要生成的 CSS 类。
   // https://unocss.dev/guide/advanced#safelist
   safelist: ['i-simple-icons:atlassian', 'i-simple-icons:soundcharts', 'i-simple-icons:docsify'],
-});
+})

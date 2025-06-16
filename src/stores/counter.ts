@@ -1,10 +1,10 @@
-import { defineStore } from 'pinia';
+import { defineStore } from 'pinia'
 
-import { store } from '@/stores';
-import counterStorage from '@/storages/counterStorage';
+import counterStorage from '@/storages/counterStorage'
+import { store } from '@/stores'
 
 interface CounterState {
-  count: number;
+  count: number
 }
 
 export const useCounterStore = defineStore({
@@ -16,31 +16,31 @@ export const useCounterStore = defineStore({
 
   getters: {
     evenOrOdd(): string {
-      return this.count % 2 === 0 ? 'even' : 'odd';
+      return this.count % 2 === 0 ? 'even' : 'odd'
     },
   },
 
   actions: {
     increase() {
-      this.count++;
-      counterStorage.setItem(this.count);
+      this.count++
+      counterStorage.setItem(this.count)
     },
     decrease() {
-      this.count--;
-      counterStorage.setItem(this.count);
+      this.count--
+      counterStorage.setItem(this.count)
     },
     decreaseAsync() {
       return new Promise<void>((resolve) => {
         setTimeout(() => {
-          this.decrease();
-          resolve();
-        }, 2000);
-      });
+          this.decrease()
+          resolve()
+        }, 2000)
+      })
     },
   },
-});
+})
 
 // 可在组件外使用
 export function useCounterStoreWithOut() {
-  return useCounterStore(store);
+  return useCounterStore(store)
 }

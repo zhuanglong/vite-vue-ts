@@ -1,9 +1,9 @@
-import mockjs from 'mockjs';
-import { MockMethod } from 'vite-plugin-mock';
+import type { MockMethod } from 'vite-plugin-mock'
+import mockjs from 'mockjs'
 
-import { resultSuccess } from '../util';
+import { resultSuccess } from '../util'
 
-const { Random } = mockjs;
+const { Random } = mockjs
 
 export default [
   {
@@ -11,7 +11,7 @@ export default [
     timeout: 1000,
     method: 'post',
     response: () => {
-      return resultSuccess(Random.color());
+      return resultSuccess(Random.color())
     },
   },
   {
@@ -20,17 +20,17 @@ export default [
     method: 'post',
     response: () => {
       return resultSuccess({
-        code: 0,
+        'code': 0,
         'data|5-10': [
           {
             id: '@id',
             title: '@ctitle',
             content: '@cparagraph',
-            image: "@image('200x100', '#4A7BF7', 'Hello')",
+            image: '@image(\'200x100\', \'#4A7BF7\', \'Hello\')',
             date: '@datetime',
           },
         ],
-      });
+      })
     },
   },
   {
@@ -39,7 +39,7 @@ export default [
     method: 'post',
     response: () => {
       return resultSuccess({
-        code: 0,
+        'code': 0,
         // 属性 data 的值是一个数组，其中含有 5 到 10 个元素
         'data|5-10': [
           {
@@ -59,32 +59,32 @@ export default [
             // 属性 grade 是数组当中的一个值
             'grade|1': ['1年级', '2年级', '3年级'],
             // 属性 guid 是唯一机器码
-            guid: '@guid',
+            'guid': '@guid',
             // 属性 id 是随机id
-            id: '@id',
+            'id': '@id',
             // 属性 title 是一个随机长度的标题
-            title: '@title()',
+            'title': '@title()',
             // 属性 paragraph 是一个随机长度的段落
-            paragraph: '@cparagraph',
+            'paragraph': '@cparagraph',
             // 属性 image 是一个随机图片 参数分别为size, background, text
-            image: "@image('200x100', '#4A7BF7', 'Hello')",
+            'image': '@image(\'200x100\', \'#4A7BF7\', \'Hello\')',
             // 属性 address 是一个随机地址
-            address: '@county(true)',
+            'address': '@county(true)',
             // 属性 date 是一个yyyy-MM-dd 的随机日期
-            date: '@date("yyyy-MM-dd")',
+            'date': '@date("yyyy-MM-dd")',
             // 属性 time 是一个 size, background, text 的随机时间
-            time: '@time("HH:mm:ss")',
+            'time': '@time("HH:mm:ss")',
             // 属性 url 是一个随机的url
-            url: '@url',
+            'url': '@url',
             // 属性 email 是一个随机email
-            email: '@email',
+            'email': '@email',
             // 属性 ip 是一个随机ip
-            ip: '@ip',
+            'ip': '@ip',
             // 属性 regexp 是一个正则表达式匹配到的值 如aA1
-            regexp: /[a-z][A-Z][0-9]/,
+            'regexp': /[a-z][A-Z]\d/,
           },
         ],
-      });
+      })
     },
   },
-] as MockMethod[];
+] as MockMethod[]

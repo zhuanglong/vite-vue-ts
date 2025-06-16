@@ -1,64 +1,70 @@
 <template>
   <div class="Login-page">
-    <h1 class="title">ViteVueTSMobile</h1>
+    <h1 class="title">
+      ViteVueTSMobile
+    </h1>
     <div class="btn-wrapper">
-      <van-button class="btn" type="primary" @click="signIn">登录</van-button>
+      <van-button class="btn" type="primary" @click="signIn">
+        登录
+      </van-button>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-  import { useRouter, useRoute } from 'vue-router';
-  import { showLoadingToast, showFailToast, closeToast } from 'vant';
+import { closeToast, showFailToast, showLoadingToast } from 'vant'
+import { useRoute, useRouter } from 'vue-router'
 
-  import { useUserStore } from '@/stores/user';
-  import * as userApi from '@/api/userApi';
+import * as userApi from '@/api/userApi'
+import { useUserStore } from '@/stores/user'
 
-  const router = useRouter();
-  const route = useRoute();
-  const { setUserInfo } = useUserStore();
+const router = useRouter()
+const route = useRoute()
+const { setUserInfo } = useUserStore()
 
-  const path = route.redirectedFrom?.fullPath || '/';
+const path = route.redirectedFrom?.fullPath || '/'
 
-  async function signIn() {
-    showLoadingToast({
-      message: 'Sign in...',
-      forbidClick: true,
-    });
-    try {
-      const res = await userApi.login({ username: 'Tom', password: '123456' });
-      if (res.code === 0) {
-        closeToast();
-        setUserInfo(res.data);
-        router.replace(path);
-      } else {
-        showFailToast({ message: 'Sign in error' });
-      }
-    } catch (error) {
-      closeToast();
+async function signIn() {
+  showLoadingToast({
+    message: 'Sign in...',
+    forbidClick: true,
+  })
+  try {
+    const res = await userApi.login({ username: 'Tom', password: '123456' })
+    if (res.code === 0) {
+      closeToast()
+      setUserInfo(res.data)
+      router.replace(path)
+    }
+    else {
+      showFailToast({ message: 'Sign in error' })
     }
   }
+  catch {
+    closeToast()
+  }
+}
 </script>
 
 <style lang="scss" scoped>
-  .Login-page {
-    padding: 20px;
-    text-align: center;
+.Login-page {
+  padding: 20px;
+  text-align: center;
 
-    .title {
-      margin-top: 50px;
-      color: inherit;
-      font-size: 24px;
-      font-weight: bold;
-    }
+  .title {
+    margin-top: 50px;
+    font-size: 24px;
+    font-weight: bold;
+    color: inherit;
+  }
 
-    .btn-wrapper {
-      width: 100%;
-      margin-top: 20px;
+  .btn-wrapper {
+    width: 100%;
+    margin-top: 20px;
 
-      .btn {
-        width: 60%;
-      }
+    .btn {
+      width: 60%;
     }
   }
+}
 </style>

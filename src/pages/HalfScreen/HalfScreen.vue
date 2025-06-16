@@ -9,28 +9,31 @@
     @closed="popupClosed"
   >
     <div class="HalfScreen-page">
-      <van-image fit="cover" src="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg" />
+      <van-image
+        fit="cover"
+        src="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg"
+      />
     </div>
   </van-popup>
 </template>
 
 <script lang="ts" setup>
-  import { ref, onMounted } from 'vue';
-  import { useRouter } from 'vue-router';
+import { onMounted, ref } from 'vue'
+import { useRouter } from 'vue-router'
 
-  const router = useRouter();
-  const showPopup = ref(false);
+const router = useRouter()
+const showPopup = ref(false)
 
-  function popupClosed() {
-    router.back();
-  }
+function popupClosed() {
+  router.back()
+}
 
-  onMounted(() => {
-    showPopup.value = true;
-  });
+onMounted(() => {
+  showPopup.value = true
+})
 </script>
 
 <style lang="scss" scoped>
-  // .HalfScreen-page {
-  // }
+// .HalfScreen-page {
+// }
 </style>

@@ -1,3 +1,3 @@
-import { LocalStorage } from '@/utils/storage';
+import { LocalStorage } from '@/utils/storage'
 
-export default new LocalStorage<number>('COUNTER', 0);
+export default new LocalStorage<number>('COUNTER', 0)

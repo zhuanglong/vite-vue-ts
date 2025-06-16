@@ -11,14 +11,14 @@ export enum RequestEnum {
   DELETE = 'DELETE',
 }
 
-type Recordable<T = any> = Record<string, T>;
+type Recordable<T = any> = Record<string, T>
 
 export function resultSuccess<T = Recordable>(data: T, { message = 'ok' } = {}) {
   return {
     code: ResultEnum.SUCCESS,
     data,
     message,
-  };
+  }
 }
 
 export function resultFail<T = Recordable>(data: T, { message = 'fail' } = {}) {
@@ -26,5 +26,5 @@ export function resultFail<T = Recordable>(data: T, { message = 'fail' } = {}) {
     code: ResultEnum.ERROR,
     data,
     message,
-  };
+  }
 }

@@ -1,11 +1,11 @@
-import { defineStore } from 'pinia';
-import type { RouteRecordRaw } from 'vue-router';
-import { store } from '@/stores';
+import type { RouteRecordRaw } from 'vue-router'
+import { defineStore } from 'pinia'
+import { store } from '@/stores'
 
 export interface RouteState {
-  menus: RouteRecordRaw[];
-  routes: RouteRecordRaw[];
-  keepAliveComponents: string[];
+  menus: RouteRecordRaw[]
+  routes: RouteRecordRaw[]
+  keepAliveComponents: string[]
 }
 
 export const useRouteStore = defineStore({
@@ -17,22 +17,22 @@ export const useRouteStore = defineStore({
   }),
   getters: {
     getMenus(): RouteRecordRaw[] {
-      return this.menus;
+      return this.menus
     },
   },
   actions: {
     setRoutes(routes: RouteRecordRaw[]) {
-      this.routes = routes;
+      this.routes = routes
     },
     setMenus(menus: RouteRecordRaw[]) {
-      this.menus = menus;
+      this.menus = menus
     },
     setKeepAliveComponents(compNames: string[]) {
-      this.keepAliveComponents = compNames;
+      this.keepAliveComponents = compNames
     },
   },
-});
+})
 
 export function useRouteStoreWidthOut() {
-  return useRouteStore(store);
+  return useRouteStore(store)
 }

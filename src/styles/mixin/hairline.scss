@@ -1,23 +1,22 @@
-//https://github.com/youzan/vant-weapp/blob/dev/packages/common/style/hairline.less
+// https://github.com/youzan/vant-weapp/blob/dev/packages/common/style/hairline.less
 @mixin hairline-common() {
   position: absolute;
   box-sizing: border-box;
-  content: ' ';
   pointer-events: none;
+  content: " ";
 }
 
 @mixin hairline() {
-  @include hairline-common();
-  top: -50%;
-  right: -50%;
-  bottom: -50%;
-  left: -50%;
+  @include hairline-common;
+
+  inset: -50%;
   border: 0 solid #eaeaea;
   transform: scale(0.5);
 }
 
 @mixin hairline-top($color, $left: 0, $right: 0) {
-  @include hairline-common();
+  @include hairline-common;
+
   top: 0;
   right: $right;
   left: $left;
@@ -26,7 +25,8 @@
 }
 
 @mixin hairline-bottom($color, $left: 0, $right: 0) {
-  @include hairline-common();
+  @include hairline-common;
+
   right: $right;
   bottom: 0;
   left: $left;

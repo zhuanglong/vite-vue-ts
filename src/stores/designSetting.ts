@@ -1,18 +1,18 @@
-import { defineStore } from 'pinia';
+import { defineStore } from 'pinia'
 
-import { store } from '@/stores';
-import designSettingStorage from '@/storages/designSettingStorage';
+import designSettingStorage from '@/storages/designSettingStorage'
+import { store } from '@/stores'
 
 export interface DesignSettingState {
   // 暗黑模式
-  darkMode: 'light' | 'dark';
+  darkMode: 'light' | 'dark'
   // 主题色
-  appTheme: string;
+  appTheme: string
   // 主题色列表
-  appThemeList: string[];
+  appThemeList: string[]
 }
 
-const storage = designSettingStorage.getItem();
+const storage = designSettingStorage.getItem()
 
 export const useDesignSettingStore = defineStore({
   id: 'designSettingStore',
@@ -45,23 +45,23 @@ export const useDesignSettingStore = defineStore({
 
   actions: {
     setDarkMode(darkMode: DesignSettingState['darkMode']) {
-      this.darkMode = darkMode;
+      this.darkMode = darkMode
       designSettingStorage.setItem({
         darkMode,
         appTheme: this.appTheme,
-      });
+      })
     },
     setAppTheme(appTheme: DesignSettingState['appTheme']) {
-      this.appTheme = appTheme;
+      this.appTheme = appTheme
       designSettingStorage.setItem({
         darkMode: this.darkMode,
         appTheme,
-      });
+      })
     },
   },
-});
+})
 
 // 可在组件外使用
 export function useDesignSettingStoreWithOut() {
-  return useDesignSettingStore(store);
+  return useDesignSettingStore(store)
 }

@@ -39,34 +39,34 @@
 </template>
 
 <script lang="ts" setup>
-  import { computed } from 'vue';
+import { computed } from 'vue'
 
-  import NavBar from '@/components/NavBar';
-  import { type DesignSettingState, useDesignSettingStore } from '@/stores/designSetting';
+import NavBar from '@/components/NavBar'
+import { type DesignSettingState, useDesignSettingStore } from '@/stores/designSetting'
 
-  const designSettingStore = useDesignSettingStore();
+const designSettingStore = useDesignSettingStore()
 
-  const getDarkMode = computed({
-    get: () => designSettingStore.darkMode === 'dark',
-    set: (value) => {
-      const darkMode = value ? 'dark' : 'light';
-      designSettingStore.setDarkMode(darkMode);
-      updateDarkSign(darkMode);
-    },
-  });
+const getDarkMode = computed({
+  get: () => designSettingStore.darkMode === 'dark',
+  set: (value) => {
+    const darkMode = value ? 'dark' : 'light'
+    designSettingStore.setDarkMode(darkMode)
+    updateDarkSign(darkMode)
+  },
+})
 
-  // html 根标签上挂载 暗/亮 属性标识
-  function updateDarkSign(mode: DesignSettingState['darkMode']) {
-    const htmlRoot = document.getElementById('htmlRoot');
-    if (htmlRoot) {
-      htmlRoot.classList.add(mode === 'dark' ? 'dark' : 'light');
-      htmlRoot.classList.remove(mode === 'dark' ? 'light' : 'dark');
-    }
+// html 根标签上挂载 暗/亮 属性标识
+function updateDarkSign(mode: DesignSettingState['darkMode']) {
+  const htmlRoot = document.getElementById('htmlRoot')
+  if (htmlRoot) {
+    htmlRoot.classList.add(mode === 'dark' ? 'dark' : 'light')
+    htmlRoot.classList.remove(mode === 'dark' ? 'light' : 'dark')
   }
+}
 
-  function toggleTheme(color: DesignSettingState['appTheme']) {
-    designSettingStore.setAppTheme(color);
-  }
+function toggleTheme(color: DesignSettingState['appTheme']) {
+  designSettingStore.setAppTheme(color)
+}
 </script>
 
-<style lang="scss" scoped></style>
+<!-- <style lang="scss" scoped></style> -->

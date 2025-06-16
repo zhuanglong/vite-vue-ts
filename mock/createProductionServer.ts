@@ -1,18 +1,18 @@
-import { createProdMockServer } from 'vite-plugin-mock/client';
+import { createProdMockServer } from 'vite-plugin-mock/client'
 
-const modules = import.meta.glob('./modules/*.ts', { eager: true });
+const modules = import.meta.glob('./modules/*.ts', { eager: true })
 
-const mockModules: any[] = [];
+const mockModules: any[] = []
 Object.keys(modules).forEach((key) => {
   // if (key.includes('/_')) {
   //   return;
   // }
-  mockModules.push(...(modules as Record<string, any>)[key].default);
-});
+  mockModules.push(...(modules as Record<string, any>)[key].default)
+})
 
 /**
  * 在生产环境中的使用
  */
 export function setupProdMockServer() {
-  createProdMockServer(mockModules);
+  createProdMockServer(mockModules)
 }

@@ -1,27 +1,28 @@
-import { resolve } from 'path';
+import { resolve } from 'node:path'
+import process from 'node:process'
 
-// import legacy from '@vitejs/plugin-legacy';
-import { defineConfig, loadEnv } from 'vite';
-import vue from '@vitejs/plugin-vue';
-import vueJsx from '@vitejs/plugin-vue-jsx';
+import vue from '@vitejs/plugin-vue'
+import vueJsx from '@vitejs/plugin-vue-jsx'
+import autoprefixer from 'autoprefixer'
+import postCssPxToRem from 'postcss-pxtorem'
 // import esbuild from 'rollup-plugin-esbuild';
-import { visualizer } from 'rollup-plugin-visualizer';
+import { visualizer } from 'rollup-plugin-visualizer'
+import UnoCSS from 'unocss/vite'
+import { VantResolver } from 'unplugin-vue-components/resolvers'
+import Components from 'unplugin-vue-components/vite'
+// import legacy from '@vitejs/plugin-legacy';
+import { defineConfig, loadEnv } from 'vite'
 // import compressPlugin from 'vite-plugin-compression';
-import { createHtmlPlugin } from 'vite-plugin-html';
-import { viteMockServe } from 'vite-plugin-mock';
-import postCssPxToRem from 'postcss-pxtorem';
-import autoprefixer from 'autoprefixer';
-import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
-import Components from 'unplugin-vue-components/vite';
-import { VantResolver } from 'unplugin-vue-components/resolvers';
-import UnoCSS from 'unocss/vite';
+import { createHtmlPlugin } from 'vite-plugin-html'
+import { viteMockServe } from 'vite-plugin-mock'
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
   // 加载 .env 环境变量
-  const env = loadEnv(mode, './') as unknown as ImportMetaEnv;
-  const isBuild = command === 'build';
-  const isBuildReport = mode === 'analyze';
+  const env = loadEnv(mode, './') as unknown as ImportMetaEnv
+  const isBuild = command === 'build'
+  const isBuildReport = mode === 'analyze'
 
   return {
     base: './',
@@ -50,13 +51,13 @@ export default defineConfig(({ command, mode }) => {
           },
         },
       }),
-      isBuildReport &&
-        visualizer({
-          filename: `dist/report.html`,
-          open: true,
-          gzipSize: true,
-          brotliSize: true,
-        }),
+      isBuildReport
+      && visualizer({
+        filename: `dist/report.html`,
+        open: true,
+        gzipSize: true,
+        brotliSize: true,
+      }),
       // !isBuildReport &&
       //   isBuild &&
       //   compressPlugin({
@@ -94,7 +95,7 @@ export default defineConfig(({ command, mode }) => {
             AtRule: {
               charset: (atRule) => {
                 if (atRule.name === 'charset') {
-                  atRule.remove();
+                  atRule.remove()
                 }
               },
             },
@@ -125,7 +126,7 @@ export default defineConfig(({ command, mode }) => {
         '/dev-api': {
           target: 'http://uat.xxx.com',
           changeOrigin: true,
-          rewrite: (path) => path.replace(/^\/dev-api/, ''),
+          rewrite: path => path.replace(/^\/dev-api/, ''),
         },
       },
     },
@@ -156,9 +157,9 @@ export default defineConfig(({ command, mode }) => {
           // 资源文件像 字体，图片等
           assetFileNames: (info) => {
             if (info.name?.endsWith('.css')) {
-              return 'css/[name]-[hash].[ext]';
+              return 'css/[name]-[hash].[ext]'
             }
-            return 'assets/[name]-[hash].[ext]';
+            return 'assets/[name]-[hash].[ext]'
           },
           // 将 node_modules 三方依赖包最小化拆分
           // manualChunks(id) {
@@ -173,5 +174,5 @@ export default defineConfig(({ command, mode }) => {
         },
       },
     },
-  };
-});
+  }
+})

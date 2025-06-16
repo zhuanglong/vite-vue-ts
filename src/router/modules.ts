@@ -1,6 +1,6 @@
 // /* chunkFileNames: "testHome" */ 和 /* webpackChunkName: "testAbout" */ 都不生效
 // 例如 About/index.vue 打包后是 index.xxxx.js，理想效果应该是 About.xxxx.js，所以只能改文件名 index.js => About.js
-import type { RouteRecordRaw } from 'vue-router';
+import type { RouteRecordRaw } from 'vue-router'
 
 export const mainMenuRoutes: RouteRecordRaw[] = [
   {
@@ -45,7 +45,7 @@ export const mainMenuRoutes: RouteRecordRaw[] = [
       cacheScrollPosition: true,
     },
   },
-];
+]
 
 const otherRoutes: RouteRecordRaw[] = [
   {
@@ -65,7 +65,7 @@ const otherRoutes: RouteRecordRaw[] = [
       ignoreAuth: true,
     },
   },
-];
+]
 
 export const routes: Array<RouteRecordRaw> = [
   {
@@ -90,4 +90,4 @@ export const routes: Array<RouteRecordRaw> = [
       title: '主题设置',
     },
   },
-];
+]

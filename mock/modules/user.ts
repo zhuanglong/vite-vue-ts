@@ -1,9 +1,9 @@
-import mockjs from 'mockjs';
-import { MockMethod } from 'vite-plugin-mock';
+import type { MockMethod } from 'vite-plugin-mock'
+import mockjs from 'mockjs'
 
-import { resultSuccess } from '../util';
+import { resultSuccess } from '../util'
 
-const { Random } = mockjs;
+const { Random } = mockjs
 
 export default [
   // 登录
@@ -22,7 +22,7 @@ export default [
         gender: 1,
         country: '中国',
         province: '广东省',
-      });
+      })
     },
   },
   // 登出
@@ -31,7 +31,7 @@ export default [
     timeout: 1000,
     method: 'post',
     response: () => {
-      return resultSuccess(null);
+      return resultSuccess(null)
     },
   },
-] as MockMethod[];
+] as MockMethod[]

@@ -23,4 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 
+.eslintcache
+.stylelintcache
 vite.config.mts.timestamp-*

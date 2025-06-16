@@ -20,34 +20,35 @@
 </template>
 
 <script lang="ts" setup>
-  import { computed, useAttrs } from 'vue';
-  import { tabbarProps } from 'vant';
+import type { tabbarProps } from 'vant'
+import { computed, useAttrs } from 'vue'
 
-  import { useRouteStore } from '@/stores/route';
+import { useRouteStore } from '@/stores/route'
 
-  type Props = typeof tabbarProps;
+type Props = typeof tabbarProps
 
-  defineOptions({
-    inheritAttrs: false,
-  });
+defineOptions({
+  inheritAttrs: false,
+})
 
-  defineProps({} as unknown as Props);
+defineProps({} as unknown as Props)
 
-  const attrs = useAttrs();
+const attrs = useAttrs()
 
-  const routeStore = useRouteStore();
+const routeStore = useRouteStore()
 
-  // 菜单
-  const getMenus = computed(() => routeStore.menus);
+// 菜单
+const getMenus = computed(() => routeStore.menus)
 </script>
 
 <style lang="scss" scoped>
-  .tabbar {
-    :deep() {
-      .van-tabbar {
-        height: 50px;
-        @include limit-width();
-      }
+.tabbar {
+  :deep() {
+    .van-tabbar {
+      height: 50px;
+
+      @include limit-width;
     }
   }
+}
 </style>
