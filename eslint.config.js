@@ -18,6 +18,7 @@ export default antfu(
         allowShortCircuit: true,
         allowTernary: true,
       }],
+      'ts/no-empty-object-type': 'off',
       'unused-imports/no-unused-vars': [
         'warn',
         {

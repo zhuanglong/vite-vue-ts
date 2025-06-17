@@ -100,7 +100,7 @@ export function isUrl(path: string): boolean {
   /* eslint-enable */
 }
 
-export function isFilled<T extends object>(res: PromiseSettledResult<T>): res is PromiseFulfilledResult<T> {
+export function isFilled<T extends {}>(res: PromiseSettledResult<T>): res is PromiseFulfilledResult<T> {
   return res.status === 'fulfilled'
 }
 
