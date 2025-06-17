@@ -1,6 +1,6 @@
 import type { Router } from 'vue-router'
 import { isNavigationFailure } from 'vue-router'
-import { useRouteStoreWidthOut } from '@/stores/route'
+import { useRouteStoreWithOut } from '@/stores/route'
 import { useUserStoreWithOut } from '@/stores/user'
 
 export function createRouterGuards(router: Router) {
@@ -33,7 +33,7 @@ export function createRouterGuards(router: Router) {
       console.warn('failed navigation', failure)
     }
 
-    const routeStore = useRouteStoreWidthOut()
+    const routeStore = useRouteStoreWithOut()
     // 在这里设置需要缓存的组件名称
     const keepAliveComponents = routeStore.keepAliveComponents
     to.matched.forEach((item) => {

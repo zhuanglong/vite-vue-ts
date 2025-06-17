@@ -33,6 +33,6 @@ export const useRouteStore = defineStore({
   },
 })
 
-export function useRouteStoreWidthOut() {
+export function useRouteStoreWithOut() {
   return useRouteStore(store)
 }

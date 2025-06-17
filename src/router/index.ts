@@ -1,11 +1,11 @@
 import type { App } from 'vue'
 import { createRouter, createWebHashHistory } from 'vue-router'
 
-import { useRouteStoreWidthOut } from '@/stores/route'
+import { useRouteStoreWithOut } from '@/stores/route'
 import { createRouterGuards } from './guards'
 import { mainMenuRoutes, routes } from './modules'
 
-const routeStore = useRouteStoreWidthOut()
+const routeStore = useRouteStoreWithOut()
 routeStore.setMenus(mainMenuRoutes)
 routeStore.setRoutes(routes)
 
