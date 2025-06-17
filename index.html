@@ -28,94 +28,15 @@
       <script>
         ;(() => {
           var res = JSON.parse(window.localStorage.getItem('DESIGN-SETTING')) || {}
-
           var htmlRoot = document.getElementById('htmlRoot')
           if (htmlRoot) {
             htmlRoot.classList.add(res.darkMode || 'light')
           }
-
           document.documentElement.style.setProperty('--app-theme-color', res.appTheme || '#5d9dfe')
         })()
       </script>
-      <style>
-        .first-loading {
-          display: flex;
-          width: 100%;
-          height: 100vh;
-          justify-content: center;
-          align-items: center;
-          flex-direction: column;
-        }
-        .dot {
-          animation: antRotate 1.2s infinite linear;
-          transform: rotate(45deg);
-          position: relative;
-          display: inline-block;
-          font-size: 52px;
-          width: 52px;
-          height: 52px;
-          box-sizing: border-box;
-        }
-        .dot i {
-          width: 24px;
-          height: 24px;
-          position: absolute;
-          display: block;
-          background-color: var(--app-theme-color);
-          border-radius: 100%;
-          transform: scale(0.75);
-          transform-origin: 50% 50%;
-          opacity: 0.3;
-          animation: antSpinMove 1s infinite linear alternate;
-        }
-        .dot i:nth-child(1) {
-          top: 0;
-          left: 0;
-        }
-        .dot i:nth-child(2) {
-          top: 0;
-          right: 0;
-          -webkit-animation-delay: 0.4s;
-          animation-delay: 0.4s;
-        }
-        .dot i:nth-child(3) {
-          right: 0;
-          bottom: 0;
-          -webkit-animation-delay: 0.8s;
-          animation-delay: 0.8s;
-        }
-        .dot i:nth-child(4) {
-          bottom: 0;
-          left: 0;
-          -webkit-animation-delay: 1.2s;
-          animation-delay: 1.2s;
-        }
-        @keyframes antRotate {
-          to {
-            -webkit-transform: rotate(405deg);
-            transform: rotate(405deg);
-          }
-        }
-        @-webkit-keyframes antRotate {
-          to {
-            -webkit-transform: rotate(405deg);
-            transform: rotate(405deg);
-          }
-        }
-        @keyframes antSpinMove {
-          to {
-            opacity: 1;
-          }
-        }
-        @-webkit-keyframes antSpinMove {
-          to {
-            opacity: 1;
-          }
-        }
-      </style>
-      <div class="first-loading">
-        <span class="dot dot-spin"><i></i><i></i><i></i><i></i></span>
-      </div>
+      <style>.first-loading{display:flex;width:100%;height:100vh;justify-content:center;align-items:center;flex-direction:column}.dot{animation:antRotate 1.2s infinite linear;transform:rotate(45deg);position:relative;display:inline-block;font-size:52PX;width:52PX;height:52PX;box-sizing:border-box}.dot i{width:24PX;height:24PX;position:absolute;display:block;background-color:var(--app-theme-color);border-radius:100%;transform:scale(.75);transform-origin:50% 50%;opacity:.3;animation:antSpinMove 1s infinite linear alternate}.dot i:nth-child(1){top:0;left:0}.dot i:nth-child(2){top:0;right:0;-webkit-animation-delay:.4s;animation-delay:.4s}.dot i:nth-child(3){right:0;bottom:0;-webkit-animation-delay:.8s;animation-delay:.8s}.dot i:nth-child(4){bottom:0;left:0;-webkit-animation-delay:1.2s;animation-delay:1.2s}@keyframes antRotate{to{-webkit-transform:rotate(405deg);transform:rotate(405deg)}}@-webkit-keyframes antRotate{to{-webkit-transform:rotate(405deg);transform:rotate(405deg)}}@keyframes antSpinMove{to{opacity:1}}@-webkit-keyframes antSpinMove{to{opacity:1}}</style>
+      <div class="first-loading"><span class="dot dot-spin"><i></i><i></i><i></i><i></i></span></div>
     </div>
     <script type="module" src="/src/main.ts"></script>
   </body>

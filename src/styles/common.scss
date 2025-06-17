@@ -13,7 +13,7 @@ body {
   font-size: 12PX;
   line-height: 1.5;
   // 避免移动端点击时出现蓝色背景
-  -webkit-tap-highlight-color: rgb(255 255 255 / 0%);
+  -webkit-tap-highlight-color: transparent;
   // 避免选中文字时出现蓝色背景
   // -moz-user-select: none;
   // -webkit-user-select: none;
