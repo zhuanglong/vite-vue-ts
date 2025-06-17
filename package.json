@@ -16,9 +16,9 @@
     "node": ">=16.15.1"
   },
   "scripts": {
-    "dev": "vite --mode development",
-    "build:staging": "vite build --mode staging",
-    "build:prod": "vite build --mode production",
+    "dev": "vite --mode dev",
+    "build:uat": "vite build --mode uat",
+    "build:prod": "vite build --mode prod",
     "analyze": "vite build --mode analyze",
     "preview": "http-server ./dist -g",
     "lint": "npm run lint:js && npm run lint:style",
