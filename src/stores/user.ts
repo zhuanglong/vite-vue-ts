@@ -1,30 +1,21 @@
 import type { ResUserInfo } from '@/api/userApi/types'
-
 import { defineStore } from 'pinia'
+import { ref } from 'vue'
 import userInfoStorage from '@/storages/userInfoStorage'
 
-import { store } from '@/stores'
+export const useUserStore = defineStore(
+  'userStore',
+  () => {
+    const userInfo = ref<ResUserInfo | null>(userInfoStorage.getItem())
 
-interface UserState {
-  userInfo: ResUserInfo | null
-}
+    function setUserInfo(info: ResUserInfo | null) {
+      userInfo.value = info
+      userInfoStorage.setItem(info)
+    }
 
-export const useUserStore = defineStore({
-  id: 'userStore',
-
-  state: (): UserState => ({
-    userInfo: userInfoStorage.getItem(),
-  }),
-
-  actions: {
-    setUserInfo(userInfo: UserState['userInfo']) {
-      this.userInfo = userInfo
-      userInfoStorage.setItem(userInfo)
-    },
+    return {
+      userInfo,
+      setUserInfo,
+    }
   },
-})
-
-// 可在组件外使用
-export function useUserStoreWithOut() {
-  return useUserStore(store)
-}
+)

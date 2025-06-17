@@ -1,26 +1,15 @@
 import { defineStore } from 'pinia'
-
+import { ref } from 'vue'
 import designSettingStorage from '@/storages/designSettingStorage'
-import { store } from '@/stores'
-
-export interface DesignSettingState {
-  // 暗黑模式
-  darkMode: 'light' | 'dark'
-  // 主题色
-  appTheme: string
-  // 主题色列表
-  appThemeList: string[]
-}
 
 const storage = designSettingStorage.getItem()
 
-export const useDesignSettingStore = defineStore({
-  id: 'designSettingStore',
-
-  state: (): DesignSettingState => ({
-    darkMode: storage.darkMode,
-    appTheme: storage.appTheme,
-    appThemeList: [
+export const useDesignSettingStore = defineStore(
+  'designSettingStore',
+  () => {
+    const darkMode = ref<'light' | 'dark'>(storage.darkMode)
+    const appTheme = ref<string>(storage.appTheme)
+    const appThemeList = ref<string[]>([
       '#5d9dfe',
       '#2d8cf0',
       '#0960bd',
@@ -40,28 +29,30 @@ export const useDesignSettingStore = defineStore({
       '#FB9300',
       '#FC5404',
       '#8675ff',
-    ],
-  }),
+    ])
 
-  actions: {
-    setDarkMode(darkMode: DesignSettingState['darkMode']) {
-      this.darkMode = darkMode
+    function setDarkMode(mode: 'light' | 'dark') {
+      darkMode.value = mode
       designSettingStorage.setItem({
-        darkMode,
-        appTheme: this.appTheme,
+        darkMode: mode,
+        appTheme: appTheme.value,
       })
-    },
-    setAppTheme(appTheme: DesignSettingState['appTheme']) {
-      this.appTheme = appTheme
+    }
+
+    function setAppTheme(theme: string) {
+      appTheme.value = theme
       designSettingStorage.setItem({
-        darkMode: this.darkMode,
-        appTheme,
+        darkMode: darkMode.value,
+        appTheme: theme,
       })
-    },
+    }
+
+    return {
+      darkMode,
+      appTheme,
+      appThemeList,
+      setDarkMode,
+      setAppTheme,
+    }
   },
-})
-
-// 可在组件外使用
-export function useDesignSettingStoreWithOut() {
-  return useDesignSettingStore(store)
-}
+)

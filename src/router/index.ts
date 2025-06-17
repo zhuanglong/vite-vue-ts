@@ -1,13 +1,9 @@
 import type { App } from 'vue'
 import { createRouter, createWebHashHistory } from 'vue-router'
 
-import { useRouteStoreWithOut } from '@/stores/route'
+import { useRouteStore } from '@/stores/route'
 import { createRouterGuards } from './guards'
 import { mainMenuRoutes, routes } from './modules'
-
-const routeStore = useRouteStoreWithOut()
-routeStore.setMenus(mainMenuRoutes)
-routeStore.setRoutes(routes)
 
 export const router = createRouter({
   history: createWebHashHistory(),
@@ -34,6 +30,9 @@ export const router = createRouter({
 })
 
 export function setupRouter(app: App<Element>) {
+  const routeStore = useRouteStore()
+  routeStore.setMenus(mainMenuRoutes)
+  routeStore.setRoutes(routes)
   app.use(router)
   createRouterGuards(router)
 }

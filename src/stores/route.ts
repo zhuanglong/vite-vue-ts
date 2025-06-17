@@ -1,38 +1,36 @@
 import type { RouteRecordRaw } from 'vue-router'
 import { defineStore } from 'pinia'
-import { store } from '@/stores'
+import { computed, ref } from 'vue'
 
-export interface RouteState {
-  menus: RouteRecordRaw[]
-  routes: RouteRecordRaw[]
-  keepAliveComponents: string[]
-}
+export const useRouteStore = defineStore(
+  'routeStore',
+  () => {
+    const menus = ref<RouteRecordRaw[]>([])
+    const routes = ref<RouteRecordRaw[]>([])
+    const keepAliveComponents = ref<string[]>([])
 
-export const useRouteStore = defineStore({
-  id: 'routeStore',
-  state: (): RouteState => ({
-    menus: [],
-    routes: [],
-    keepAliveComponents: [],
-  }),
-  getters: {
-    getMenus(): RouteRecordRaw[] {
-      return this.menus
-    },
+    const getMenus = computed(() => menus.value)
+
+    function setRoutes(newRoutes: RouteRecordRaw[]) {
+      routes.value = newRoutes
+    }
+
+    function setMenus(newMenus: RouteRecordRaw[]) {
+      menus.value = newMenus
+    }
+
+    function setKeepAliveComponents(compNames: string[]) {
+      keepAliveComponents.value = compNames
+    }
+
+    return {
+      menus,
+      routes,
+      keepAliveComponents,
+      getMenus,
+      setRoutes,
+      setMenus,
+      setKeepAliveComponents,
+    }
   },
-  actions: {
-    setRoutes(routes: RouteRecordRaw[]) {
-      this.routes = routes
-    },
-    setMenus(menus: RouteRecordRaw[]) {
-      this.menus = menus
-    },
-    setKeepAliveComponents(compNames: string[]) {
-      this.keepAliveComponents = compNames
-    },
-  },
-})
-
-export function useRouteStoreWithOut() {
-  return useRouteStore(store)
-}
+)

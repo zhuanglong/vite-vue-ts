@@ -9,7 +9,7 @@ import type {
 import axios from 'axios'
 import { closeToast, showLoadingToast } from 'vant'
 
-import { useUserStoreWithOut } from '@/stores/user'
+import { useUserStore } from '@/stores/user'
 
 export interface ApiResult<T = any> {
   code: number
@@ -47,7 +47,7 @@ class Request {
       }
 
       if (config.url !== '/login') {
-        const token = useUserStoreWithOut().userInfo?.token
+        const token = useUserStore().userInfo?.token
         if (token) {
           config.headers.Authorization = `Bearer ${token}`
         }
@@ -82,7 +82,7 @@ class Request {
         }
 
         if (error.response?.status === 401) {
-          useUserStoreWithOut().setUserInfo(null)
+          useUserStore().setUserInfo(null)
           window.location.href = `/login?redirect=${window.location.pathname}`
           return Promise.reject(error)
         }

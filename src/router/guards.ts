@@ -1,14 +1,14 @@
 import type { Router } from 'vue-router'
 import { isNavigationFailure } from 'vue-router'
-import { useRouteStoreWithOut } from '@/stores/route'
-import { useUserStoreWithOut } from '@/stores/user'
+import { useRouteStore } from '@/stores/route'
+import { useUserStore } from '@/stores/user'
 
 export function createRouterGuards(router: Router) {
   router.beforeEach(async (to, from, next) => {
     // to: 即将要进入的目标
     // from: 当前导航正要离开的路由
 
-    const userInfo = useUserStoreWithOut()
+    const userInfo = useUserStore()
 
     // 忽略检查
     if (to.meta.ignoreAuth) {
@@ -33,7 +33,7 @@ export function createRouterGuards(router: Router) {
       console.warn('failed navigation', failure)
     }
 
-    const routeStore = useRouteStoreWithOut()
+    const routeStore = useRouteStore()
     // 在这里设置需要缓存的组件名称
     const keepAliveComponents = routeStore.keepAliveComponents
     to.matched.forEach((item) => {

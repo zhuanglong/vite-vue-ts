@@ -1,46 +1,39 @@
 import { defineStore } from 'pinia'
-
+import { computed, ref } from 'vue'
 import counterStorage from '@/storages/counterStorage'
-import { store } from '@/stores'
 
-interface CounterState {
-  count: number
-}
+export const useCounterStore = defineStore(
+  'counterStore',
+  () => {
+    const count = ref<number>(counterStorage.getItem())
 
-export const useCounterStore = defineStore({
-  id: 'counterStore',
+    const evenOrOdd = computed(() => count.value % 2 === 0 ? 'even' : 'odd')
 
-  state: (): CounterState => ({
-    count: counterStorage.getItem(),
-  }),
+    function increase() {
+      count.value++
+      counterStorage.setItem(count.value)
+    }
 
-  getters: {
-    evenOrOdd(): string {
-      return this.count % 2 === 0 ? 'even' : 'odd'
-    },
-  },
+    function decrease() {
+      count.value--
+      counterStorage.setItem(count.value)
+    }
 
-  actions: {
-    increase() {
-      this.count++
-      counterStorage.setItem(this.count)
-    },
-    decrease() {
-      this.count--
-      counterStorage.setItem(this.count)
-    },
-    decreaseAsync() {
+    function decreaseAsync() {
       return new Promise<void>((resolve) => {
         setTimeout(() => {
-          this.decrease()
+          decrease()
           resolve()
         }, 2000)
       })
-    },
-  },
-})
+    }
 
-// 可在组件外使用
-export function useCounterStoreWithOut() {
-  return useCounterStore(store)
-}
+    return {
+      count,
+      evenOrOdd,
+      increase,
+      decrease,
+      decreaseAsync,
+    }
+  },
+)
