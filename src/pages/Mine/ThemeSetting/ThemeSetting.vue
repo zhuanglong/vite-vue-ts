@@ -11,12 +11,12 @@
 
       <van-divider>系统主题色</van-divider>
       <div un-flex="~" un-justify="center">
-        <div un-grid="~ cols-8 gap-2">
+        <div un-grid="~ cols-8 gap-3">
           <span
             v-for="(item, index) in designSettingStore.appThemeList"
             :key="index"
-            un-h="9"
-            un-w="9"
+            un-h="12"
+            un-w="12"
             un-items-center="~"
             un-border="2 rounded-md"
             un-flex="~"

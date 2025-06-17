@@ -20,7 +20,7 @@ export default defineConfig({
     // 所以需要转成 px，然后由 postcss 把 px 转成 rem，完成适配
     // https://unocss.dev/presets/rem-to-px
     presetRemToPx({
-      baseFontSize: 16,
+      baseFontSize: 12,
     }),
 
     // 图标预设: https://unocss.dev/presets/icons
