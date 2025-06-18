@@ -1727,13 +1727,6 @@
   resolved "https://registry.npmmirror.com/@types/parse-json/-/parse-json-4.0.2.tgz#5950e50960793055845e956c427fc2b0d70c5239"
   integrity sha512-dISoDXWWQwUquiKsyZ4Ng+HX2KsPL7LyHKHQwgGFEA3IaKac4Obd+h2a/a6waisAoepJlBcx9paWqjA8/HVjCw==
 
-"@types/postcss-pxtorem@^6.0.0":
-  version "6.1.0"
-  resolved "https://registry.npmmirror.com/@types/postcss-pxtorem/-/postcss-pxtorem-6.1.0.tgz#c1340f3f27deb1ad0be203cb98b54393c309211a"
-  integrity sha512-kHsYTjQgllOfhi3J+xunjMKUZ3APARV/JYeOOcIVLhvPVS162S8Ir8LsZwioFFyYCSnQp+aisupiSaRWVwKyDA==
-  dependencies:
-    postcss "^8.2.6"
-
 "@types/svgo@^2.6.1":
   version "2.6.4"
   resolved "https://registry.npmmirror.com/@types/svgo/-/svgo-2.6.4.tgz#b7298fc1dd687539fd63fc818b00146d96e68836"
@@ -6686,15 +6679,15 @@ postcss-media-query-parser@^0.2.3:
   resolved "https://registry.npmmirror.com/postcss-media-query-parser/-/postcss-media-query-parser-0.2.3.tgz#27b39c6f4d94f81b1a73b8f76351c609e5cef244"
   integrity sha512-3sOlxmbKcSHMjlUXQZKQ06jOswE7oVkXPxmZdoB1r5l0q6gTFTQSHxNxOrCccElbW7dxNytifNEo8qidX2Vsig==
 
+postcss-mobile-forever@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.npmmirror.com/postcss-mobile-forever/-/postcss-mobile-forever-5.0.0.tgz#dd6209b84e485ced1ab8177a4d4a57768c2239c4"
+  integrity sha512-/kkhxMAd8kNZYeOFaTjhOx7hdfKE7AhJNU7SmlrxJV9fYqbLGrcGQMwXO4aWUvtxBseXwF2+qSMv3j/AZhitNA==
+
 postcss-prefix-selector@^1.6.0:
   version "1.16.1"
   resolved "https://registry.npmmirror.com/postcss-prefix-selector/-/postcss-prefix-selector-1.16.1.tgz#87a77523838b79c0e8aec29f173234b2987cdc04"
   integrity sha512-Umxu+FvKMwlY6TyDzGFoSUnzW+NOfMBLyC1tAkIjgX+Z/qGspJeRjVC903D7mx7TuBpJlwti2ibXtWuA7fKMeQ==
-
-postcss-pxtorem@^6.0.0:
-  version "6.1.0"
-  resolved "https://registry.npmmirror.com/postcss-pxtorem/-/postcss-pxtorem-6.1.0.tgz#7e6410e30426adef53bad6c4c5f00cd5f586937c"
-  integrity sha512-ROODSNci9ADal3zUcPHOF/K83TiCgNSPXQFSbwyPHNV8ioHIE4SaC+FPOufd8jsr5jV2uIz29v1Uqy1c4ov42g==
 
 postcss-resolve-nested-selector@^0.1.6:
   version "0.1.6"
@@ -6752,7 +6745,7 @@ postcss@^5.2.17:
     source-map "^0.5.6"
     supports-color "^3.2.3"
 
-postcss@^8.2.6, postcss@^8.4.32, postcss@^8.4.38, postcss@^8.4.43, postcss@^8.4.5, postcss@^8.5.0, postcss@^8.5.3:
+postcss@^8.4.32, postcss@^8.4.38, postcss@^8.4.43, postcss@^8.4.5, postcss@^8.5.0, postcss@^8.5.3:
   version "8.5.5"
   resolved "https://registry.npmmirror.com/postcss/-/postcss-8.5.5.tgz#04de7797f6911fb1c96550e96616d08681537ef3"
   integrity sha512-d/jtm+rdNT8tpXuHY5MMtcbJFBkhXE6593XVR9UoGCH8jSFGci7jGvMGH5RYd5PBJW+00NZQt6gf7CbagJCrhg==

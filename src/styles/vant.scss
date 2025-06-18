@@ -5,13 +5,3 @@
 //   --van-primary-color: @primaryColor;
 //   --van-cascader-active-color: var(--van-primary-color);
 // }
-
-.van-overlay {
-  @include limit-width;
-}
-
-.van-popup {
-  &:not(.van-toast) {
-    @include limit-width;
-  }
-}

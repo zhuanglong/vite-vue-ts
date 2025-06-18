@@ -28,7 +28,7 @@ import '@unocss/reset/tailwind-compat.css'
 import 'virtual:uno.css'
 
 // 移动端适应，手动转换 rem
-import './styles/flexible/flexible.js'
+import './styles/flexible.js'
 
 if (isProdMode()) {
   setupProdMockServer()

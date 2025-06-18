@@ -46,8 +46,6 @@ const getMenus = computed(() => routeStore.menus)
   :deep() {
     .van-tabbar {
       height: 50px;
-
-      @include limit-width;
     }
   }
 }

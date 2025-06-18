@@ -4,7 +4,7 @@ import process from 'node:process'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import autoprefixer from 'autoprefixer'
-import postCssPxToRem from 'postcss-pxtorem'
+import viewport from 'postcss-mobile-forever'
 // import esbuild from 'rollup-plugin-esbuild';
 import { visualizer } from 'rollup-plugin-visualizer'
 import UnoCSS from 'unocss/vite'
@@ -83,7 +83,6 @@ export default defineConfig(({ command, mode }) => {
         scss: {
           additionalData: `
             @import "@/styles/mixin/index.scss";
-            @import '@/styles/flexible/flexible.scss';
           `,
         },
       },
@@ -100,12 +99,20 @@ export default defineConfig(({ command, mode }) => {
               },
             },
           },
-          postCssPxToRem({
-            rootValue: 100, // 根据 flexible.scss 中的 1rem = 100px
-            propList: ['*'],
-            // exclude: (file) => !file.includes('node_modules/vant/'), // 排除
-          }),
           autoprefixer(),
+          // https://github.com/wswmsword/postcss-mobile-forever
+          // https://github.com/wswmsword/postcss-mobile-forever/issues/29#issuecomment-2023036716
+          viewport({
+            appSelector: '#app',
+            viewportWidth: 375,
+            maxDisplayWidth: 600,
+            mobileUnit: 'rem',
+            rootContainingBlockSelectorList: ['.van-popup--center', '.van-popup--bottom', '.van-tabbar'],
+            border: true,
+            // exclude: [/node_modules\/vant\//],
+            // valueBlackList: ['1px solid'], // 属性值包含 '1px solid' 的内容不会转换
+            // selectorBlackList: ['.ignore', 'keep-px'], // 类名中含有'keep-px'以及'.ignore'类都不会被转换
+          }),
         ],
       },
     },

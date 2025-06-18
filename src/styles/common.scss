@@ -1,8 +1,4 @@
-@import "./flexible/flexible";
 @import "./vant";
-
-// 适配移动端
-@include rootFontSize;
 
 html {
   font-family: Arial, Helvetica, sans-serif;
@@ -77,4 +73,8 @@ html.light {
 // dark
 .van-theme-dark {
   --test-theme-color: red;
+}
+
+#app {
+  overflow: hidden auto;
 }

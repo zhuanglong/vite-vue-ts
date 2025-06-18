@@ -60,8 +60,6 @@ export default defineComponent({
   :deep() {
     .van-nav-bar {
       height: 46px;
-
-      @include limit-width;
     }
   }
 }
