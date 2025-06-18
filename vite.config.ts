@@ -8,6 +8,7 @@ import viewport from 'postcss-mobile-forever'
 // import esbuild from 'rollup-plugin-esbuild';
 import { visualizer } from 'rollup-plugin-visualizer'
 import UnoCSS from 'unocss/vite'
+import UnpluginSvgComponent from 'unplugin-svg-component/vite'
 import { VantResolver } from 'unplugin-vue-components/resolvers'
 import Components from 'unplugin-vue-components/vite'
 // import legacy from '@vitejs/plugin-legacy';
@@ -15,7 +16,6 @@ import { defineConfig, loadEnv } from 'vite'
 // import compressPlugin from 'vite-plugin-compression';
 import { createHtmlPlugin } from 'vite-plugin-html'
 import { viteMockServe } from 'vite-plugin-mock'
-import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
@@ -36,9 +36,13 @@ export default defineConfig(({ command, mode }) => {
         dirs: [],
         dts: 'types/vant-components.d.ts',
       }),
-      createSvgIconsPlugin({
-        iconDirs: [resolve(__dirname, './src/assets/icons')],
-        symbolId: 'icon-[dir]-[name]',
+      UnpluginSvgComponent({
+        prefix: 'svg', // 加前缀，防止类似 getImg('baomihua') 引用也会打包进来
+        iconDir: [resolve(__dirname, './src/assets/icons')],
+        preserveColor: resolve(__dirname, './src/assets/icons'),
+        dts: true,
+        dtsDir: resolve(__dirname, './types'),
+        domInsertionStrategy: 'dynamic',
       }),
       viteMockServe({
         mockPath: 'mock/modules',
@@ -169,15 +173,18 @@ export default defineConfig(({ command, mode }) => {
             return 'assets/[name]-[hash].[ext]'
           },
           // 将 node_modules 三方依赖包最小化拆分
-          // manualChunks(id) {
-          //   if (id.includes('node_modules')) {
-          //     const paths = id.toString().split('node_modules/');
-          //     if (paths[2]) {
-          //       return paths[2].split('/')[0].toString();
-          //     }
-          //     return paths[1].split('/')[0].toString();
-          //   }
-          // },
+          manualChunks(id) {
+            // if (id.includes('node_modules')) {
+            //   const paths = id.toString().split('node_modules/')
+            //   if (paths[2]) {
+            //     return paths[2].split('/')[0].toString()
+            //   }
+            //   return paths[1].split('/')[0].toString()
+            // }
+            if (id.includes('~virtual/svg-component')) {
+              return 'svg-icons'
+            }
+          },
         },
       },
     },

@@ -1,11 +1,13 @@
 import { createApp } from 'vue'
 
+import SvgIcon from '~virtual/svg-component'
+
 // MockData
 import { isProdMode } from '@/utils/appEnv.ts'
 import { setupProdMockServer } from '../mock/createProductionServer'
 
 import App from './App.vue'
-import router, { setupRouter } from './router'
+import { setupRouter } from './router'
 import { setupStore } from './stores'
 
 // vant
@@ -17,9 +19,6 @@ import '@vant/touch-emulator'
 // 截止 20240308(已支持)
 // import allSettled from 'promise.allsettled';
 // allSettled.shim();
-
-// 加载 svg 图标
-import 'virtual:svg-icons-register'
 
 // UnoCSS
 // https://unocss.dev/guide/style-reset#tailwind-compat
@@ -42,9 +41,9 @@ async function bootstrap() {
   setupStore(app)
   // 挂载路由
   setupRouter(app)
-  // 路由准备就绪后挂载APP实例
-  await router.isReady()
-  app.mount('#app', true)
+  // 组件
+  app.component(SvgIcon.name as string, SvgIcon)
+  app.mount('#app')
 }
 
 bootstrap()

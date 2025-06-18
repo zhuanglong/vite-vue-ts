@@ -29,8 +29,8 @@
         <img :src="getImg('sanmingzhi')" alt="icon">
         <span class="bg-img" />
         <div class="svg-row">
-          <SvgIcon name="hanbao" />
-          <SvgIcon name="pintu" color="currentColor" />
+          <SvgIcon name="svg-hanbao" />
+          <SvgIcon name="svg-pintu" color="currentColor" />
         </div>
       </div>
       <div class="lotties-wrapper">
@@ -53,11 +53,12 @@ import bangbangtangIcon from '@/assets/icons/bangbangtang.svg'
 import Aniki_Hamster from '@/assets/lotties/Aniki_Hamster.json'
 import Polite_Chicky from '@/assets/lotties/Polite_Chicky.json'
 import NavBar from '@/components/NavBar'
-import SvgIcon from '@/components/SvgIcon'
+// import SvgIcon from '@/components/SvgIcon'
 
 let lottie1: AnimationItem
 let lottie2: AnimationItem
 
+// 这种方式会把 icons/ 下的 svg 都打包进去
 function getImg(name: string) {
   // 动态获取不能用路径别名
   return new URL(`../../assets/icons/${name}.svg`, import.meta.url).href

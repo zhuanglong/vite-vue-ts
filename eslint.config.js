@@ -6,7 +6,7 @@ export default antfu(
     ignores: [
       'public',
       'dist*',
-      'vite.config.mts.timestamp-*',
+      'vite.config.ts.timestamp-*',
       'types/vant-components.d.ts',
     ],
   },
