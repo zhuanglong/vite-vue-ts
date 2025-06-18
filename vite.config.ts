@@ -172,15 +172,10 @@ export default defineConfig(({ command, mode }) => {
             }
             return 'assets/[name]-[hash].[ext]'
           },
-          // 将 node_modules 三方依赖包最小化拆分
           manualChunks(id) {
-            // if (id.includes('node_modules')) {
-            //   const paths = id.toString().split('node_modules/')
-            //   if (paths[2]) {
-            //     return paths[2].split('/')[0].toString()
-            //   }
-            //   return paths[1].split('/')[0].toString()
-            // }
+            if (id.includes('node_modules')) {
+              return 'vendor'
+            }
             if (id.includes('~virtual/svg-component')) {
               return 'svg-icons'
             }
