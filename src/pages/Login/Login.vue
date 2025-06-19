@@ -22,7 +22,7 @@ const router = useRouter()
 const route = useRoute()
 const { setUserInfo } = useUserStore()
 
-const path = route.redirectedFrom?.fullPath || '/'
+const redirect = route.query.redirect?.toString() ?? '/'
 
 async function signIn() {
   showLoadingToast({
@@ -34,7 +34,7 @@ async function signIn() {
     if (res.code === 0) {
       closeToast()
       setUserInfo(res.data)
-      router.replace(path)
+      router.replace(redirect)
     }
     else {
       showFailToast({ message: 'Sign in error' })

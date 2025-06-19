@@ -2,7 +2,7 @@ import type { App } from 'vue'
 import { createRouter, createWebHashHistory } from 'vue-router'
 
 import { useRouteStore } from '@/stores/route'
-import { createRouterGuards } from './guards'
+import setupGuards from './guards'
 import { mainMenuRoutes, routes } from './modules'
 
 export const router = createRouter({
@@ -34,7 +34,7 @@ export function setupRouter(app: App<Element>) {
   routeStore.setMenus(mainMenuRoutes)
   routeStore.setRoutes(routes)
   app.use(router)
-  createRouterGuards(router)
+  setupGuards(router)
 }
 
 export default router

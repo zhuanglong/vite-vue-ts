@@ -19,8 +19,19 @@ export const useRouteStore = defineStore(
       menus.value = newMenus
     }
 
-    function setKeepAliveComponents(compNames: string[]) {
-      keepAliveComponents.value = compNames
+    function addKeepAliveComp(componentName: string) {
+      keepAliveComponents.value.push(componentName)
+    }
+
+    function removeKeepAliveComp(componentName: string) {
+      const index = keepAliveComponents.value.findIndex(name => name === componentName)
+      if (index !== -1) {
+        keepAliveComponents.value.splice(index, 1)
+      }
+    }
+
+    function claenKeepAliveComp() {
+      keepAliveComponents.value = []
     }
 
     return {
@@ -30,7 +41,9 @@ export const useRouteStore = defineStore(
       getMenus,
       setRoutes,
       setMenus,
-      setKeepAliveComponents,
+      addKeepAliveComp,
+      removeKeepAliveComp,
+      claenKeepAliveComp,
     }
   },
 )

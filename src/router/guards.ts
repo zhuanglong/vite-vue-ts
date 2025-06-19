@@ -1,64 +1,61 @@
 import type { Router } from 'vue-router'
-import { isNavigationFailure } from 'vue-router'
 import { useRouteStore } from '@/stores/route'
 import { useUserStore } from '@/stores/user'
 
-export function createRouterGuards(router: Router) {
+// 标题
+function setupTitle(router: Router) {
+  router.afterEach((to) => {
+    document.title = (to?.meta?.title as string) || document.title
+  })
+}
+
+// 鉴权
+function setupAuth(router: Router) {
   router.beforeEach(async (to, from, next) => {
-    // to: 即将要进入的目标
-    // from: 当前导航正要离开的路由
-
-    const userInfo = useUserStore()
-
     // 忽略检查
     if (to.meta.ignoreAuth) {
       next()
       return
     }
 
+    const userInfo = useUserStore()
     if (!userInfo.userInfo?.token) {
-      next('/login')
+      next({
+        path: '/login',
+        query: {
+          redirect: to.fullPath,
+        },
+      })
       return
     }
 
     next()
   })
+}
 
-  // 进入某个路由之后触发的钩子
-  router.afterEach((to, _, failure) => {
-    // 设置每个页面的 title
-    document.title = (to?.meta?.title as string) || document.title
-
-    if (isNavigationFailure(failure)) {
-      console.warn('failed navigation', failure)
-    }
-
+// 页面缓存
+function setupKeepAlive(router: Router) {
+  router.afterEach((to) => {
     const routeStore = useRouteStore()
-    // 在这里设置需要缓存的组件名称
-    const keepAliveComponents = routeStore.keepAliveComponents
     to.matched.forEach((item) => {
       // 获取当前组件名
-      const currentComName: any = item.name
-      // 如果 currentComName 且 keepAliveComponents 不包含 currentComName 且即将要进入的路由 meta 属性里 keepAlive 为 true，则缓存该组件
-      if (currentComName && !keepAliveComponents.includes(currentComName) && item.meta?.keepAlive) {
+      const componentName: any = item.name
+      // 如果 componentName 且 keepAliveComponents 不包含 componentName 且即将要进入的路由 meta 属性里 keepAlive 为 true，则缓存该组件
+      if (componentName && !routeStore.keepAliveComponents.includes(componentName) && item.meta?.keepAlive) {
         // 需要缓存的组件
-        keepAliveComponents.push(currentComName)
+        routeStore.addKeepAliveComp(componentName)
       }
       else if (!item.meta?.keepAlive) {
         // 不需要缓存的组件
         // 这里的作用一开始组件设置为缓存，之后又设置不缓存但是它还是存在 keepAliveComponents 数组中
-        // keepAliveComponents 使用 findIndex 与当前路由对比，如果存在则返回具体下标位置，不存在返回 -1
-        const index = routeStore.keepAliveComponents.findIndex(name => name === currentComName)
-        if (index !== -1) {
-          // 通过返回具体下标位置删除 keepAliveComponents 数组中缓存的元素
-          keepAliveComponents.splice(index, 1)
-        }
+        routeStore.removeKeepAliveComp(componentName)
       }
     })
-    routeStore.setKeepAliveComponents(keepAliveComponents)
   })
+}
 
-  router.onError((error) => {
-    console.error(error, '路由错误')
-  })
+export default function setupGuards(router: Router) {
+  setupTitle(router)
+  setupAuth(router)
+  setupKeepAlive(router)
 }

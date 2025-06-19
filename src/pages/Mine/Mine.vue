@@ -48,7 +48,7 @@ async function signOut() {
     if (res.code === 0) {
       closeToast()
       userInfoStore.setUserInfo(null)
-      routeStore.setKeepAliveComponents([])
+      routeStore.claenKeepAliveComp()
       router.push('/login')
     }
     else {
