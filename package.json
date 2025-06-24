@@ -20,7 +20,7 @@
     "build:uat": "vite build --mode uat",
     "build:prod": "vite build --mode prod",
     "analyze": "vite build --mode analyze",
-    "preview": "http-server ./dist -g",
+    "preview": "http-server ./dist --gzip",
     "lint": "npm run lint:js && npm run lint:style",
     "lint:js": "eslint . --ext .js,.jsx,.ts,.tsx,.vue --cache",
     "lint:js--fix": "npm run lint:js -- --fix",

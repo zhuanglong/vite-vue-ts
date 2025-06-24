@@ -5,15 +5,15 @@ import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import autoprefixer from 'autoprefixer'
 import viewport from 'postcss-mobile-forever'
-// import esbuild from 'rollup-plugin-esbuild';
+// import esbuild from 'rollup-plugin-esbuild'
 import { visualizer } from 'rollup-plugin-visualizer'
 import UnoCSS from 'unocss/vite'
 import UnpluginSvgComponent from 'unplugin-svg-component/vite'
 import { VantResolver } from 'unplugin-vue-components/resolvers'
 import Components from 'unplugin-vue-components/vite'
-// import legacy from '@vitejs/plugin-legacy';
+// import legacy from '@vitejs/plugin-legacy'
 import { defineConfig, loadEnv } from 'vite'
-// import compressPlugin from 'vite-plugin-compression';
+// import compressPlugin from 'vite-plugin-compression'
 import { createHtmlPlugin } from 'vite-plugin-html'
 import { viteMockServe } from 'vite-plugin-mock'
 
@@ -62,14 +62,14 @@ export default defineConfig(({ command, mode }) => {
         gzipSize: true,
         brotliSize: true,
       }),
-      // !isBuildReport &&
-      //   isBuild &&
-      //   compressPlugin({
-      //     ext: '.gz',
-      //     filter: /\.(js|css)$/i,
-      //     threshold: 10240,
-      //     deleteOriginFile: true,
-      //   }),
+      // !isBuildReport
+      // && isBuild
+      // && compressPlugin({
+      //   ext: '.gz',
+      //   filter: /\.(js|css)$/i,
+      //   threshold: 10240,
+      //   deleteOriginFile: true,
+      // }),
       // 解决 dev 模式无法在 Chrome 70 下使用 optional chaining 语法，https://github.com/vitejs/vite/issues/5222
       // 安卓：Chrome/69.x.x，如需在钉钉上调试，请启用 esbuild
       // 截止 20240308(已支持)：安卓：DingTalk/7.5.5.12 Chrome/100.0.xx，Windows：DingTalk/7.5.10 Chrome/91.0.xx
