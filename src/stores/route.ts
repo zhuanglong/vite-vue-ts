@@ -1,49 +1,46 @@
 import type { RouteRecordRaw } from 'vue-router'
 import { defineStore } from 'pinia'
-import { computed, ref } from 'vue'
 
 export const useRouteStore = defineStore(
   'routeStore',
   () => {
     const menus = ref<RouteRecordRaw[]>([])
     const routes = ref<RouteRecordRaw[]>([])
-    const keepAliveComponents = ref<string[]>([])
-
-    const getMenus = computed(() => menus.value)
-
-    function setRoutes(newRoutes: RouteRecordRaw[]) {
-      routes.value = newRoutes
-    }
+    const keepAliveList = ref<string[]>([])
 
     function setMenus(newMenus: RouteRecordRaw[]) {
       menus.value = newMenus
     }
 
-    function addKeepAliveComp(componentName: string) {
-      keepAliveComponents.value.push(componentName)
+    function setRoutes(newRoutes: RouteRecordRaw[]) {
+      routes.value = newRoutes
     }
 
-    function removeKeepAliveComp(componentName: string) {
-      const index = keepAliveComponents.value.findIndex(name => name === componentName)
-      if (index !== -1) {
-        keepAliveComponents.value.splice(index, 1)
+    function addKeepAliveName(name: string) {
+      if (!keepAliveList.value.includes(name)) {
+        keepAliveList.value.push(name)
       }
     }
 
-    function claenKeepAliveComp() {
-      keepAliveComponents.value = []
+    function removeKeepAliveName(name: string) {
+      if (keepAliveList.value.includes(name)) {
+        keepAliveList.value = keepAliveList.value.filter(item => item !== name)
+      }
+    }
+
+    function clearKeepAliveList() {
+      keepAliveList.value = []
     }
 
     return {
       menus,
       routes,
-      keepAliveComponents,
-      getMenus,
+      keepAliveList,
       setRoutes,
       setMenus,
-      addKeepAliveComp,
-      removeKeepAliveComp,
-      claenKeepAliveComp,
+      addKeepAliveName,
+      removeKeepAliveName,
+      clearKeepAliveList,
     }
   },
 )

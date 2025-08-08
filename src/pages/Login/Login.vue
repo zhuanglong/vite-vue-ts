@@ -20,7 +20,7 @@ import { useUserStore } from '@/stores/user'
 
 const router = useRouter()
 const route = useRoute()
-const { setUserInfo } = useUserStore()
+const userStore = useUserStore()
 
 const redirect = route.query.redirect?.toString() ?? '/'
 
@@ -33,7 +33,8 @@ async function signIn() {
     const res = await userApi.login({ username: 'Tom', password: '123456' })
     if (res.code === 0) {
       closeToast()
-      setUserInfo(res.data)
+      userStore.setToken(res.data.token)
+      userStore.setUserInfo(res.data)
       router.replace(redirect)
     }
     else {

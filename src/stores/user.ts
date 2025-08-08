@@ -1,21 +1,41 @@
-import type { ResUserInfo } from '@/api/userApi/types'
+import type { UserInfoVO } from '@/api/userApi/types'
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
-import userInfoStorage from '@/storages/userInfoStorage'
 
 export const useUserStore = defineStore(
   'userStore',
   () => {
-    const userInfo = ref<ResUserInfo | null>(userInfoStorage.getItem())
+    const token = ref<string>()
+    const userInfo = ref<UserInfoVO>()
 
-    function setUserInfo(info: ResUserInfo | null) {
-      userInfo.value = info
-      userInfoStorage.setItem(info)
+    const authRoles = computed(() => userInfo.value?.roles || [])
+
+    const setToken = (value: string) => {
+      token.value = value
+    }
+
+    const clearToken = () => {
+      token.value = undefined
+    }
+
+    const setUserInfo = (value: UserInfoVO) => {
+      userInfo.value = value
+    }
+
+    const clearUserInfo = () => {
+      userInfo.value = undefined
     }
 
     return {
+      token,
       userInfo,
+      authRoles,
+      setToken,
+      clearToken,
       setUserInfo,
+      clearUserInfo,
     }
+  },
+  {
+    persist: true,
   },
 )

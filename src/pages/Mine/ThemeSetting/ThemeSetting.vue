@@ -39,8 +39,6 @@
 </template>
 
 <script lang="ts" setup>
-import { computed } from 'vue'
-
 import NavBar from '@/components/NavBar'
 import { type DesignSettingState, useDesignSettingStore } from '@/stores/designSetting'
 

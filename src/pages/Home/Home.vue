@@ -16,8 +16,6 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, ref } from 'vue'
-
 import * as testApi from '@/api/testApi'
 import NavBar from '@/components/NavBar'
 

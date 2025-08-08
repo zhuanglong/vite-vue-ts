@@ -7,7 +7,7 @@ import type {
   InternalAxiosRequestConfig,
 } from 'axios'
 import axios from 'axios'
-import { closeToast, showLoadingToast } from 'vant'
+import { closeToast, showFailToast, showLoadingToast } from 'vant'
 
 import { useUserStore } from '@/stores/user'
 
@@ -37,7 +37,7 @@ class Request {
 
     // 请求拦截器
     this.instance.interceptors.request.use((config: InternalAxiosRequestConfig) => {
-      /// / showLoading
+      // showLoading
       const enableLoading = config.requestOptions?.enableLoading
       if (enableLoading) {
         showLoadingToast({
@@ -64,7 +64,7 @@ class Request {
     // 响应拦截器
     this.instance.interceptors.response.use(
       (response: AxiosResponse) => {
-        /// / hideLoading
+        // hideLoading
         const enableLoading = response.config.requestOptions?.enableLoading
         if (enableLoading) {
           closeToast()
@@ -75,14 +75,15 @@ class Request {
         return response.data
       },
       (error: AxiosError) => {
-        /// / hideLoading
+        // hideLoading
         const enableLoading = error.config?.requestOptions?.enableLoading
         if (enableLoading) {
           closeToast()
         }
 
         if (error.response?.status === 401) {
-          useUserStore().setUserInfo(null)
+          useUserStore().clearToken()
+          useUserStore().clearUserInfo()
           window.location.href = `/login?redirect=${window.location.pathname}`
           return Promise.reject(error)
         }
@@ -102,6 +103,7 @@ class Request {
           errMessage = 'request system error'
         }
         console.warn('request error:', errMessage)
+        showFailToast({ message: errMessage })
 
         return Promise.reject(error)
       },

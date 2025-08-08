@@ -27,6 +27,7 @@ export default {
       },
     ],
     'declaration-property-value-no-unknown': null,
+    'no-empty-source': null,
   },
   allowEmptyInput: true,
   ignoreFiles: [

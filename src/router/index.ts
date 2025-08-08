@@ -9,7 +9,7 @@ export const router = createRouter({
   history: createWebHashHistory(),
   routes,
   strict: true,
-  // tabbar 切换并不能恢复滚动条位置，只有从子路由返回才行，
+  // tabbar 切换并不能恢复滚动条位置，因为是 push，只有 back 才行，
   // scrollBehavior: (to, from, savedPosition) => {
   //   if (to.meta.cacheScrollPosition && savedPosition) {
   //     return savedPosition

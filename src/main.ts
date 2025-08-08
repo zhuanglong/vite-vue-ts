@@ -2,10 +2,6 @@ import { createApp } from 'vue'
 
 import SvgIcon from '~virtual/svg-component'
 
-// MockData
-import { isProdMode } from '@/utils/appEnv.ts'
-import { setupProdMockServer } from '../mock/createProductionServer'
-
 import App from './App.vue'
 import { setupRouter } from './router'
 import { setupStore } from './stores'
@@ -28,10 +24,6 @@ import 'virtual:uno.css'
 
 // 移动端适应，手动转换 rem
 import './styles/flexible.js'
-
-if (isProdMode()) {
-  setupProdMockServer()
-}
 
 async function bootstrap() {
   const app = createApp(App)

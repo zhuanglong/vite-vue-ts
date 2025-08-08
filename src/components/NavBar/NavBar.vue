@@ -1,58 +1,47 @@
-<script lang="tsx">
-import { NavBar, navBarProps as vanNavBarProps } from 'vant'
-import { computed, defineComponent, type ExtractPropTypes, unref } from 'vue'
+<template>
+  <van-nav-bar
+    class="nav-bar"
+    :title="getTitle"
+    fixed
+    placeholder
+    safe-area-inset-top
+    :z-index="999"
+    v-bind="$attrs"
+    @click-left="handleClickLeft"
+  >
+    <template v-if="$slots.title" #title>
+      <slot name="title" />
+    </template>
+    <template v-if="$slots.left || leftArrow" #left>
+      <slot v-if="$slots.left" name="left" />
+      <i v-else-if="leftArrow" class="i-ic:sharp-arrow-back-ios text-xl" />
+    </template>
+    <template v-if="$slots.right" #right>
+      <slot name="right" />
+    </template>
+  </van-nav-bar>
+</template>
+
+<script lang="ts" setup>
 import { useRoute, useRouter } from 'vue-router'
 import 'vant/es/nav-bar/style'
 
-export const navBarProps = {
-  leftArrow: {
-    ...vanNavBarProps.leftArrow,
-    default: true,
-  },
-} as unknown as typeof vanNavBarProps
+import { navBarProps } from './types'
 
-export type NavBarProps = ExtractPropTypes<typeof navBarProps>
-
-export default defineComponent({
-  components: {
-    NavBar,
-  },
-
+defineOptions({
   inheritAttrs: false,
-
-  props: navBarProps,
-
-  setup(props, { slots, attrs }) {
-    const route = useRoute()
-    const router = useRouter()
-
-    const getTitle = computed(() => route.meta.title)
-
-    const navBarSlots = {
-      title: slots.title,
-      left: () =>
-        slots.left
-          ? slots.left()
-          : props.leftArrow && <i class="i-ic:sharp-arrow-back-ios text-xl" />,
-      right: slots.right,
-    }
-
-    return () => (
-      <NavBar
-        class="nav-bar"
-        title={unref(getTitle)}
-        fixed
-        leftArrow
-        placeholder
-        safe-area-inset-top
-        zIndex={999}
-        onClickLeft={(attrs.onClickLeft as undefined) || router.back}
-        v-slots={navBarSlots}
-        {...attrs}
-      />
-    )
-  },
 })
+
+defineProps(navBarProps)
+
+const route = useRoute()
+const router = useRouter()
+
+const getTitle = computed(() => route.meta.title)
+
+function handleClickLeft() {
+  router.back()
+}
 </script>
 
 <style lang="scss" scoped>

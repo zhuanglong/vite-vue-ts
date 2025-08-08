@@ -47,7 +47,6 @@
 <script lang="ts" setup>
 // https://github.com/airbnb/lottie-web/issues/2927#issuecomment-1593391384
 import lottie, { type AnimationItem } from 'lottie-web/build/player/lottie_light'
-import { onMounted, onUnmounted } from 'vue'
 import bangbangtangIcon from '@/assets/icons/bangbangtang.svg'
 
 import Aniki_Hamster from '@/assets/lotties/Aniki_Hamster.json'

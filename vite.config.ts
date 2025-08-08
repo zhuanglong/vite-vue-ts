@@ -9,13 +9,15 @@ import viewport from 'postcss-mobile-forever'
 import { visualizer } from 'rollup-plugin-visualizer'
 import UnoCSS from 'unocss/vite'
 import UnpluginSvgComponent from 'unplugin-svg-component/vite'
-import { VantResolver } from 'unplugin-vue-components/resolvers'
+import AutoImport from 'unplugin-auto-import/vite'
+// import { VantResolver } from 'unplugin-vue-components/resolvers' // 这个不更新了
+import { VantResolver } from '@vant/auto-import-resolver'
 import Components from 'unplugin-vue-components/vite'
 // import legacy from '@vitejs/plugin-legacy'
 import { defineConfig, loadEnv } from 'vite'
 // import compressPlugin from 'vite-plugin-compression'
 import { createHtmlPlugin } from 'vite-plugin-html'
-import { viteMockServe } from 'vite-plugin-mock'
+import { vitePluginFakeServer } from 'vite-plugin-fake-server'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
@@ -31,6 +33,14 @@ export default defineConfig(({ command, mode }) => {
       vue(),
       vueJsx(),
       UnoCSS(),
+      AutoImport({
+        imports: ['vue'],
+        eslintrc: {
+          enabled: true,
+        },
+        // resolvers: [VantResolver()], // 会自动导入对应的 Vant API 以及样式（如 showToast 等），不建议这样做，来源不明
+        dts: 'types/auto-imports.d.ts',
+      }),
       Components({
         resolvers: [VantResolver()],
         dirs: [],
@@ -44,8 +54,12 @@ export default defineConfig(({ command, mode }) => {
         dtsDir: resolve(__dirname, './types'),
         domInsertionStrategy: 'dynamic',
       }),
-      viteMockServe({
-        mockPath: 'mock/modules',
+      // https://github.com/condorheroblog/vite-plugin-fake-server
+      vitePluginFakeServer({
+        logger: !isBuild,
+        include: 'src/mock',
+        infixName: false,
+        enableProd: isBuild,
       }),
       createHtmlPlugin({
         minify: true,

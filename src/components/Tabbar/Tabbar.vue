@@ -9,7 +9,7 @@
     v-bind="attrs"
   >
     <van-tabbar-item
-      v-for="menu in getMenus"
+      v-for="menu in routeStore.menus"
       :key="menu.name"
       :to="menu.path"
       :icon="(menu.meta?.icon as string)"
@@ -21,7 +21,6 @@
 
 <script lang="ts" setup>
 import type { tabbarProps } from 'vant'
-import { computed, useAttrs } from 'vue'
 
 import { useRouteStore } from '@/stores/route'
 
@@ -36,9 +35,6 @@ defineProps({} as unknown as Props)
 const attrs = useAttrs()
 
 const routeStore = useRouteStore()
-
-// 菜单
-const getMenus = computed(() => routeStore.menus)
 </script>
 
 <style lang="scss" scoped>

@@ -1,12 +1,10 @@
 <template>
-  <VanConfigProvider :theme="designSettingStore.darkMode" :theme-vars="themeVars">
+  <van-config-provider :theme="designSettingStore.darkMode" :theme-vars="themeVars">
     <KeepAliveLayout />
-  </VanConfigProvider>
+  </van-config-provider>
 </template>
 
 <script lang="ts" setup>
-import { computed } from 'vue'
-
 import KeepAliveLayout from '@/layouts/KeepAliveLayout.vue'
 
 import { useDesignSettingStore } from '@/stores/designSetting'

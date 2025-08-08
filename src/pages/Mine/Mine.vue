@@ -34,7 +34,7 @@ defineOptions({ name: 'Mine' })
 useCacheScrollPosition()
 const router = useRouter()
 const routeTitle = useRouteTitle()
-const userInfoStore = useUserStore()
+const userStore = useUserStore()
 const counterStore = useCounterStore()
 const routeStore = useRouteStore()
 
@@ -47,9 +47,10 @@ async function signOut() {
     const res = await userApi.logout()
     if (res.code === 0) {
       closeToast()
-      userInfoStore.setUserInfo(null)
-      routeStore.claenKeepAliveComp()
-      router.push('/login')
+      userStore.clearToken()
+      userStore.clearUserInfo()
+      routeStore.clearKeepAliveList()
+      router.replace({ path: '/login' })
     }
     else {
       showFailToast({

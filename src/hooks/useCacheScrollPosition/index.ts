@@ -1,4 +1,3 @@
-import { onActivated } from 'vue'
 import { onBeforeRouteLeave } from 'vue-router'
 
 export function useCacheScrollPosition() {

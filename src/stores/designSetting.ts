@@ -1,5 +1,4 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
 import designSettingStorage from '@/storages/designSettingStorage'
 
 export interface DesignSettingState {

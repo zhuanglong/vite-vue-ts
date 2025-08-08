@@ -1,13 +1,16 @@
 @import "./vant";
 
 html {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif !important;
 }
 
 body {
   margin: 0;
   font-size: 12PX;
   line-height: 1.5;
+  background-color: #fff;
+  color: #000;
+  font-family: inherit !important;
   // 避免移动端点击时出现蓝色背景
   -webkit-tap-highlight-color: transparent;
   // 避免选中文字时出现蓝色背景

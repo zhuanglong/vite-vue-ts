@@ -1,5 +1,4 @@
 import { defineStore } from 'pinia'
-import { computed, ref } from 'vue'
 import counterStorage from '@/storages/counterStorage'
 
 export const useCounterStore = defineStore(

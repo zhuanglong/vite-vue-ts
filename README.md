@@ -2,8 +2,8 @@
 
 ## 特点
 
-- 基于最新的 `Vite5`、`Vue3`、`Vant4`、`Pinia2`、`TypeScript`、`UnoCSS` 等主流技术开发
-- 集成代码规范检查 `ESLint`、`Prettier`、`StyleLint`、`simple-git-hooks`，多人协作风格统一
+- 基于最新的 `Vite`、`Vue`、`Vant`、`Pinia`、`TypeScript`、`UnoCSS` 等主流技术开发
+- 集成代码规范检查 `ESLint`、`StyleLint`、`simple-git-hooks`，多人协作风格统一
 - 路由守卫，集成登录和登出，登录状态持久化
 - 动态 `Route Keepalive`，`页面滚动条缓存`，提升页面切换体验
 - 移动端适配 postcss-mobile-forever

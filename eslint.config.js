@@ -2,12 +2,10 @@ import antfu from '@antfu/eslint-config'
 
 export default antfu(
   {
-    unocss: true,
     ignores: [
       'public',
       'dist*',
       'vite.config.ts.timestamp-*',
-      'types/vant-components.d.ts',
     ],
   },
   {
@@ -26,6 +24,12 @@ export default antfu(
           varsIgnorePattern: '^_',
         },
       ],
+      'unused-imports/no-unused-imports': 'warn',
+      'perfectionist/sort-imports': 'off',
+      'perfectionist/sort-named-imports': 'off',
+      'no-console': 'off',
+      'no-alert': 'off',
+      'no-useless-catch': 'off',
     },
   },
   {
@@ -37,6 +41,7 @@ export default antfu(
       'vue/block-order': ['error', {
         order: ['template', 'script', 'style'],
       }],
+      'vue/v-on-event-hyphenation': 'off',
     },
   },
 )
