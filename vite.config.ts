@@ -127,6 +127,7 @@ export default defineConfig(({ command, mode }) => {
             mobileUnit: 'rem',
             rootContainingBlockSelectorList: ['.van-popup--center', '.van-popup--bottom', '.van-tabbar'],
             border: true,
+            exclude: [/\/index.html/],
             // exclude: [/node_modules\/vant\//],
             // valueBlackList: ['1px solid'], // 属性值包含 '1px solid' 的内容不会转换
             // selectorBlackList: ['.ignore', 'keep-px'], // 类名中含有'keep-px'以及'.ignore'类都不会被转换
