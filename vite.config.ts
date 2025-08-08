@@ -118,7 +118,6 @@ export default defineConfig(({ command, mode }) => {
             },
           },
           autoprefixer(),
-          // https://github.com/wswmsword/postcss-mobile-forever
           // https://github.com/wswmsword/postcss-mobile-forever/issues/29#issuecomment-2023036716
           viewport({
             appSelector: '#app',
@@ -126,6 +125,7 @@ export default defineConfig(({ command, mode }) => {
             maxDisplayWidth: 600,
             mobileUnit: 'rem',
             rootContainingBlockSelectorList: ['.van-popup--center', '.van-popup--bottom', '.van-tabbar'],
+            // appContainingBlock: 'manual',
             border: true,
             exclude: [/\/index.html/],
             // exclude: [/node_modules\/vant\//],

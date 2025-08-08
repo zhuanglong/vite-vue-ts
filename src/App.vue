@@ -55,7 +55,7 @@ const themeVars = computed(() => {
 
 <style lang="scss">
 // 全局样式
-@import "./styles/common";
+@import "./styles/index";
 // 字体
 @import "./assets/fonts/font.css";
 // 字体图标
