@@ -13,14 +13,14 @@
     "url": "https://github.com/zhuanglong/vite-vue-ts/issues"
   },
   "engines": {
-    "node": ">=16.15.1"
+    "node": "^20.19.0 || >=22.12.0"
   },
   "scripts": {
     "dev": "vite --mode dev",
     "build:uat": "vite build --mode uat",
     "build:prod": "vite build --mode prod",
     "analyze": "vite build --mode analyze",
-    "preview": "http-server ./dist",
+    "preview": "http-server ./dist -c-1",
     "lint": "npm run lint:js && npm run lint:style",
     "lint:js": "eslint . --ext .js,.jsx,.ts,.tsx,.vue --cache",
     "lint:js--fix": "npm run lint:js -- --fix",
@@ -41,11 +41,11 @@
     "pinia": "^3.0.3",
     "pinia-plugin-persistedstate": "^4.4.1",
     "vant": "^4.8.5",
-    "vue": "^3.4.19",
-    "vue-router": "^4.3.0"
+    "vue": "^3.5.18",
+    "vue-router": "^4.5.1"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^4.14.1",
+    "@antfu/eslint-config": "^5.2.0",
     "@commitlint/cli": "^18.6.1",
     "@commitlint/config-conventional": "^18.6.2",
     "@faker-js/faker": "^9.9.0",
@@ -67,23 +67,20 @@
     "autoprefixer": "^10.4.14",
     "cz-git": "^1.8.0",
     "eslint": "^9.29.0",
-    "eslint-plugin-format": "^1.0.1",
-    "lint-staged": "^11.2.3",
-    "postcss": "^8.4.5",
-    "postcss-html": "^1.3.0",
+    "lint-staged": "^16.1.5",
+    "postcss-html": "^1.8.0",
     "postcss-mobile-forever": "^5.0.0",
-    "postcss-scss": "^4.0.3",
     "rimraf": "^5.0.5",
-    "rollup-plugin-esbuild": "^6.1.1",
-    "rollup-plugin-visualizer": "^5.12.0",
+    "rollup-plugin-esbuild": "^6.2.1",
+    "rollup-plugin-visualizer": "^6.0.3",
     "sass-embedded": "^1.90.0",
-    "simple-git-hooks": "^2.9.0",
+    "simple-git-hooks": "^2.13.1",
     "stylelint": "^16.20.0",
     "stylelint-config-recess-order": "^6.0.0",
     "stylelint-config-standard-scss": "^15.0.1",
     "stylelint-config-standard-vue": "^1.0.0",
     "stylelint-scss": "^6.12.1",
-    "typescript": "5.1.6",
+    "typescript": "^5.9.2",
     "unocss": "^0.58.5",
     "unplugin-auto-import": "^20.0.0",
     "unplugin-svg-component": "^0.12.1",
@@ -92,7 +89,7 @@
     "vite-plugin-compression": "^0.5.1",
     "vite-plugin-fake-server": "^2.2.0",
     "vite-plugin-html": "^3.2.0",
-    "vue-tsc": "^1.8.27"
+    "vue-tsc": "^3.0.5"
   },
   "simple-git-hooks": {
     "pre-commit": "npm run precommit",

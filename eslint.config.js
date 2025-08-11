@@ -10,6 +10,7 @@ export default antfu(
   },
   {
     rules: {
+      'import/consistent-type-specifier-style': 'off',
       'eslint-comments/no-unlimited-disable': 'off',
       'curly': ['error', 'all'],
       'ts/no-unused-expressions': ['error', {

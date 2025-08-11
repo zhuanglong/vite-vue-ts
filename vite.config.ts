@@ -99,6 +99,7 @@ export default defineConfig(({ command, mode }) => {
       // https://cn.vitejs.dev/config/#css-preprocessoroptions
       preprocessorOptions: {
         scss: {
+          api: 'modern-compiler',
           additionalData: `
             @use "@/styles/mixin/utils.scss";
           `,
@@ -109,17 +110,6 @@ export default defineConfig(({ command, mode }) => {
       },
       postcss: {
         plugins: [
-          // 解决打包警告 `"@charset" must be the first rule in the file`
-          {
-            postcssPlugin: 'internal:charset-removal',
-            AtRule: {
-              charset: (atRule) => {
-                if (atRule.name === 'charset') {
-                  atRule.remove()
-                }
-              },
-            },
-          },
           autoprefixer(),
           // https://github.com/wswmsword/postcss-mobile-forever/issues/29#issuecomment-2023036716
           viewport({
