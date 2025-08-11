@@ -9,6 +9,7 @@ export default {
     'stylelint-scss',
   ],
   rules: {
+    'scss/load-partial-extension': null,
     'media-feature-range-notation': null,
     'at-rule-no-unknown': null,
     'no-descending-specificity': null,

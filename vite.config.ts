@@ -100,8 +100,11 @@ export default defineConfig(({ command, mode }) => {
       preprocessorOptions: {
         scss: {
           additionalData: `
-            @import "@/styles/mixin/index.scss";
+            @use "@/styles/mixin/utils.scss";
           `,
+          // 这样用：
+          // @include utils.text-overflow(1);
+          // @include hairline.hairline-top(red);
         },
       },
       postcss: {
