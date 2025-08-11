@@ -14,7 +14,7 @@
     </template>
     <template v-if="$slots.left || leftArrow" #left>
       <slot v-if="$slots.left" name="left" />
-      <i v-else-if="leftArrow" class="i-ic:sharp-arrow-back-ios text-xl" />
+      <SvgIcon v-else-if="leftArrow" name="svg-sharp-arrow-back-ios" class="left-arrow-icon" />
     </template>
     <template v-if="$slots.right" #right>
       <slot name="right" />
@@ -50,6 +50,10 @@ function handleClickLeft() {
     .van-nav-bar {
       height: 46px;
     }
+  }
+
+  .left-arrow-icon {
+    font-size: 20px;
   }
 }
 </style>

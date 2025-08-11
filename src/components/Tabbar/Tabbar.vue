@@ -12,9 +12,13 @@
       v-for="menu in routeStore.menus"
       :key="menu.name"
       :to="menu.path"
-      :icon="(menu.meta?.icon as string)"
     >
       {{ menu.meta?.title }}
+      <template #icon>
+        <SvgIcon v-if="menu.meta?.icon === 'tabbar-home'" name="svg-tabbar-home" />
+        <SvgIcon v-if="menu.meta?.icon === 'tabbar-chat'" name="svg-tabbar-chat" />
+        <SvgIcon v-if="menu.meta?.icon === 'tabbar-mine'" name="svg-tabbar-mine" />
+      </template>
     </van-tabbar-item>
   </van-tabbar>
 </template>
@@ -42,6 +46,11 @@ const routeStore = useRouteStore()
   :deep() {
     .van-tabbar {
       height: 50px;
+    }
+
+    .van-tabbar-item__icon {
+      width: 22px;
+      height: 22px;
     }
   }
 }

@@ -11,7 +11,7 @@ export const mainMenuRoutes: RouteRecordRaw[] = [
     component: () => import('@/pages/Home/Home.vue'),
     meta: {
       title: '首页',
-      icon: 'wap-home',
+      icon: 'tabbar-home',
       keepAlive: true,
       cacheScrollPosition: true,
     },
@@ -20,7 +20,7 @@ export const mainMenuRoutes: RouteRecordRaw[] = [
         path: '/home/half-screen',
         component: () => import('@/pages/HalfScreen/HalfScreen.vue'),
         meta: {
-          title: '半屏路由',
+          title: '',
         },
       },
     ],
@@ -30,7 +30,7 @@ export const mainMenuRoutes: RouteRecordRaw[] = [
     component: () => import('@/pages/Message/Message.vue'),
     meta: {
       title: '消息',
-      icon: 'chat',
+      icon: 'tabbar-chat',
       keepAlive: true,
       cacheScrollPosition: true,
     },
@@ -40,7 +40,7 @@ export const mainMenuRoutes: RouteRecordRaw[] = [
     component: () => import('@/pages/Mine/Mine.vue'),
     meta: {
       title: '我的',
-      icon: 'manager',
+      icon: 'tabbar-mine',
       keepAlive: true,
       cacheScrollPosition: true,
     },

@@ -10,27 +10,16 @@
       </van-cell>
 
       <van-divider>系统主题色</van-divider>
-      <div un-flex="~" un-justify="center">
-        <div un-grid="~ cols-8 gap-3">
+      <div class="theme-color-wrapper">
+        <div class="theme-color-grid">
           <span
             v-for="(item, index) in designSettingStore.appThemeList"
             :key="index"
-            un-h="12"
-            un-w="12"
-            un-items-center="~"
-            un-border="2 rounded-md"
-            un-flex="~"
-            un-justify="center"
-            un-cursor="pointer"
+            class="theme-color-item"
             :style="{ 'background-color': item }"
             @click="toggleTheme(item)"
           >
-            <i
-              v-show="item === designSettingStore.appTheme"
-              class="i-ic:sharp-check"
-              un-text-2xl
-              un-text-white
-            />
+            <SvgIcon v-show="item === designSettingStore.appTheme" name="svg-sharp-check" class="check-icon" />
           </span>
         </div>
       </div>
@@ -67,4 +56,31 @@ function toggleTheme(color: DesignSettingState['appTheme']) {
 }
 </script>
 
-<!-- <style lang="scss" scoped></style> -->
+<style lang="scss" scoped>
+.theme-color-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.theme-color-grid {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.theme-color-item {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 2px solid #e5e7eb;
+  border-radius: 6px;
+}
+
+.check-icon {
+  font-size: 24px;
+  color: #fff;
+}
+</style>

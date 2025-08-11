@@ -7,7 +7,6 @@ import autoprefixer from 'autoprefixer'
 import viewport from 'postcss-mobile-forever'
 // import esbuild from 'rollup-plugin-esbuild'
 import { visualizer } from 'rollup-plugin-visualizer'
-import UnoCSS from 'unocss/vite'
 import UnpluginSvgComponent from 'unplugin-svg-component/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 // import { VantResolver } from 'unplugin-vue-components/resolvers' // 这个不更新了
@@ -32,7 +31,6 @@ export default defineConfig(({ command, mode }) => {
     plugins: [
       vue(),
       vueJsx(),
-      UnoCSS(),
       AutoImport({
         imports: ['vue'],
         eslintrc: {

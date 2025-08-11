@@ -23,6 +23,5 @@
     "jsonc",
     "yaml"
   ],
-  "stylelint.validate": ["css", "scss", "vue"],
-  "css.customData": [".vscode/unocss.json"]
+  "stylelint.validate": ["css", "scss", "vue"]
 }

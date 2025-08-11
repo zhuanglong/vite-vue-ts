@@ -4,7 +4,6 @@
     "dbaeumer.vscode-eslint",
     "stylelint.vscode-stylelint",
     "mikestead.dotenv",
-    "antfu.unocss",
     "lihuiwang.vue-alias-skip"
   ]
 }
