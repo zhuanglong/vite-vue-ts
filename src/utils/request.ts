@@ -47,7 +47,7 @@ class Request {
       }
 
       if (config.url !== '/login') {
-        const token = useUserStore().userInfo?.token
+        const token = useUserStore().token
         if (token) {
           config.headers.Authorization = `Bearer ${token}`
         }
