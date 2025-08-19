@@ -1,6 +1,6 @@
 <template>
   <van-nav-bar
-    class="nav-bar"
+    class="NavBar-comp"
     :title="getTitle"
     fixed
     placeholder
@@ -45,7 +45,7 @@ function handleClickLeft() {
 </script>
 
 <style lang="scss" scoped>
-.nav-bar {
+.NavBar-comp {
   :deep() {
     .van-nav-bar {
       height: 46px;

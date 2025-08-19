@@ -6,9 +6,9 @@
         <h3 class="title">
           Fonts
         </h3>
-        <div>Hello React! 你好 React！123</div>
-        <div>Hello React! 你好 React！123</div>
-        <div>Hello React! 你好 React！123</div>
+        <div>Hello Vue! 你好 Vue！123</div>
+        <div>Hello Vue! 你好 Vue！123</div>
+        <div>Hello Vue! 你好 Vue！123</div>
       </div>
       <div class="icon-font-wrapper">
         <h3 class="title">

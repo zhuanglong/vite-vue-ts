@@ -1,6 +1,6 @@
 <template>
   <van-tabbar
-    class="tabbar"
+    class="Tabbar-comp"
     safe-area-inset-bottom
     route
     :fixed="true"
@@ -42,7 +42,7 @@ const routeStore = useRouteStore()
 </script>
 
 <style lang="scss" scoped>
-.tabbar {
+.Tabbar-comp {
   :deep() {
     .van-tabbar {
       height: 50px;

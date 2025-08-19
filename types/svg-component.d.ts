@@ -7,20 +7,20 @@
 declare module '~virtual/svg-component' {
   const SvgIcon: import("vue").DefineComponent<{
       name: {
-          type: import("vue").PropType<"svg-bangbangtang" | "svg-baomihua" | "svg-bingqilin" | "svg-hanbao" | "svg-pintu" | "svg-react" | "svg-sanmingzhi" | "svg-sharp-arrow-back-ios" | "svg-sharp-check" | "svg-tabbar-chat" | "svg-tabbar-home" | "svg-tabbar-mine">;
+          type: import("vue").PropType<"svg-bangbangtang" | "svg-baomihua" | "svg-bingqilin" | "svg-hanbao" | "svg-pintu" | "svg-sanmingzhi" | "svg-sharp-arrow-back-ios" | "svg-sharp-check" | "svg-tabbar-chat" | "svg-tabbar-home" | "svg-tabbar-mine" | "svg-vue">;
           default: string;
           required: true;
       };
   }, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
       name: {
-          type: import("vue").PropType<"svg-bangbangtang" | "svg-baomihua" | "svg-bingqilin" | "svg-hanbao" | "svg-pintu" | "svg-react" | "svg-sanmingzhi" | "svg-sharp-arrow-back-ios" | "svg-sharp-check" | "svg-tabbar-chat" | "svg-tabbar-home" | "svg-tabbar-mine">;
+          type: import("vue").PropType<"svg-bangbangtang" | "svg-baomihua" | "svg-bingqilin" | "svg-hanbao" | "svg-pintu" | "svg-sanmingzhi" | "svg-sharp-arrow-back-ios" | "svg-sharp-check" | "svg-tabbar-chat" | "svg-tabbar-home" | "svg-tabbar-mine" | "svg-vue">;
           default: string;
           required: true;
       };
   }>>, {
-      name: "svg-bangbangtang" | "svg-baomihua" | "svg-bingqilin" | "svg-hanbao" | "svg-pintu" | "svg-react" | "svg-sanmingzhi" | "svg-sharp-arrow-back-ios" | "svg-sharp-check" | "svg-tabbar-chat" | "svg-tabbar-home" | "svg-tabbar-mine";
+      name: "svg-bangbangtang" | "svg-baomihua" | "svg-bingqilin" | "svg-hanbao" | "svg-pintu" | "svg-sanmingzhi" | "svg-sharp-arrow-back-ios" | "svg-sharp-check" | "svg-tabbar-chat" | "svg-tabbar-home" | "svg-tabbar-mine" | "svg-vue";
   }>;
-  export const svgNames: ["svg-bangbangtang", "svg-baomihua", "svg-bingqilin", "svg-hanbao", "svg-pintu", "svg-react", "svg-sanmingzhi", "svg-sharp-arrow-back-ios", "svg-sharp-check", "svg-tabbar-chat", "svg-tabbar-home", "svg-tabbar-mine"];
-  export type SvgName = "svg-bangbangtang" | "svg-baomihua" | "svg-bingqilin" | "svg-hanbao" | "svg-pintu" | "svg-react" | "svg-sanmingzhi" | "svg-sharp-arrow-back-ios" | "svg-sharp-check" | "svg-tabbar-chat" | "svg-tabbar-home" | "svg-tabbar-mine";
+  export const svgNames: ["svg-bangbangtang", "svg-baomihua", "svg-bingqilin", "svg-hanbao", "svg-pintu", "svg-sanmingzhi", "svg-sharp-arrow-back-ios", "svg-sharp-check", "svg-tabbar-chat", "svg-tabbar-home", "svg-tabbar-mine", "svg-vue"];
+  export type SvgName = "svg-bangbangtang" | "svg-baomihua" | "svg-bingqilin" | "svg-hanbao" | "svg-pintu" | "svg-sanmingzhi" | "svg-sharp-arrow-back-ios" | "svg-sharp-check" | "svg-tabbar-chat" | "svg-tabbar-home" | "svg-tabbar-mine" | "svg-vue";
   export default SvgIcon;
 }

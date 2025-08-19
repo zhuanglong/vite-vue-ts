@@ -1,5 +1,5 @@
 <template>
-  <div class="H5Rem-root">
+  <div class="H5Rem-comp">
     <div class="p1">
       px字体大小
     </div>
@@ -17,7 +17,7 @@
 </script>
 
 <style lang="scss" scoped>
-.H5Rem-root {
+.H5Rem-comp {
   width: 150px;
   margin: 10PX auto; // PX 排除转换
   text-align: left;
